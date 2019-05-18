@@ -1,147 +1,19 @@
 ﻿  Minigin.cpp
-c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\xmemory0(881): error C2280: 'dae::RenderComponent::RenderComponent(dae::RenderComponent &&) noexcept': attempting to reference a deleted function
-  c:\users\thile\onedrive\documenten\jaar2dae\prog4\minigin\exam_assignment\minigin\rendercomponent.h(20): note: see declaration of 'dae::RenderComponent::RenderComponent'
-  c:\users\thile\onedrive\documenten\jaar2dae\prog4\minigin\exam_assignment\minigin\rendercomponent.h(20): note: 'dae::RenderComponent::RenderComponent(dae::RenderComponent &&) noexcept': function was explicitly deleted
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(900): note: see reference to function template instantiation 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,_Ty>(_Alloc &,_Objty *const ,_Ty &&)' being compiled
-          with
-          [
-              _Alloc=std::allocator<dae::RenderComponent>,
-              _Ty=dae::RenderComponent,
-              _Objty=dae::RenderComponent
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(902): note: see reference to function template instantiation 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,_Ty>(_Alloc &,_Objty *const ,_Ty &&)' being compiled
-          with
-          [
-              _Alloc=std::allocator<dae::RenderComponent>,
-              _Ty=dae::RenderComponent,
-              _Objty=dae::RenderComponent
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(916): note: see reference to function template instantiation 'void std::vector<dae::RenderComponent,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<_Ty>(_Ty &&)' being compiled
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(937): note: see reference to function template instantiation 'void std::vector<dae::RenderComponent,std::allocator<_Ty>>::emplace_back<dae::RenderComponent>(dae::RenderComponent &&)' being compiled
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(936): note: while compiling class template member function 'void std::vector<dae::RenderComponent,std::allocator<_Ty>>::push_back(_Ty &&)'
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
-  c:\users\thile\onedrive\documenten\jaar2dae\prog4\minigin\exam_assignment\minigin\scene.h(33): note: see reference to function template instantiation 'void std::vector<dae::RenderComponent,std::allocator<_Ty>>::push_back(_Ty &&)' being compiled
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
-  c:\users\thile\onedrive\documenten\jaar2dae\prog4\minigin\exam_assignment\minigin\scene.h(38): note: see reference to class template instantiation 'std::vector<dae::RenderComponent,std::allocator<_Ty>>' being compiled
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
+  RenderComponent.cpp
   Renderer.cpp
-c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(1737): error C2036: 'dae::Scene *': unknown size
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(1731): note: while compiling class template member function '_Ty &std::vector<_Ty,std::allocator<_Ty>>::operator [](const unsigned int)'
-          with
-          [
-              _Ty=dae::Scene
-          ]
-  c:\users\thile\onedrive\documenten\jaar2dae\prog4\minigin\exam_assignment\minigin\scenemanager.h(17): note: see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::operator [](const unsigned int)' being compiled
-          with
-          [
-              _Ty=dae::Scene
-          ]
-  c:\users\thile\onedrive\documenten\jaar2dae\prog4\minigin\exam_assignment\minigin\scenemanager.h(21): note: see reference to class template instantiation 'std::vector<dae::Scene,std::allocator<_Ty>>' being compiled
-          with
-          [
-              _Ty=dae::Scene
-          ]
-  Scene.cpp
-c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\xmemory0(881): error C2280: 'dae::RenderComponent::RenderComponent(dae::RenderComponent &&) noexcept': attempting to reference a deleted function
-  c:\users\thile\onedrive\documenten\jaar2dae\prog4\minigin\exam_assignment\minigin\rendercomponent.h(20): note: see declaration of 'dae::RenderComponent::RenderComponent'
-  c:\users\thile\onedrive\documenten\jaar2dae\prog4\minigin\exam_assignment\minigin\rendercomponent.h(20): note: 'dae::RenderComponent::RenderComponent(dae::RenderComponent &&) noexcept': function was explicitly deleted
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(900): note: see reference to function template instantiation 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,_Ty>(_Alloc &,_Objty *const ,_Ty &&)' being compiled
-          with
-          [
-              _Alloc=std::allocator<dae::RenderComponent>,
-              _Ty=dae::RenderComponent,
-              _Objty=dae::RenderComponent
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(902): note: see reference to function template instantiation 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,_Ty>(_Alloc &,_Objty *const ,_Ty &&)' being compiled
-          with
-          [
-              _Alloc=std::allocator<dae::RenderComponent>,
-              _Ty=dae::RenderComponent,
-              _Objty=dae::RenderComponent
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(916): note: see reference to function template instantiation 'void std::vector<dae::RenderComponent,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<_Ty>(_Ty &&)' being compiled
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(937): note: see reference to function template instantiation 'void std::vector<dae::RenderComponent,std::allocator<_Ty>>::emplace_back<dae::RenderComponent>(dae::RenderComponent &&)' being compiled
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(936): note: while compiling class template member function 'void std::vector<dae::RenderComponent,std::allocator<_Ty>>::push_back(_Ty &&)'
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
-  c:\users\thile\onedrive\documenten\jaar2dae\prog4\minigin\exam_assignment\minigin\scene.h(33): note: see reference to function template instantiation 'void std::vector<dae::RenderComponent,std::allocator<_Ty>>::push_back(_Ty &&)' being compiled
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
-  c:\users\thile\onedrive\documenten\jaar2dae\prog4\minigin\exam_assignment\minigin\scene.h(38): note: see reference to class template instantiation 'std::vector<dae::RenderComponent,std::allocator<_Ty>>' being compiled
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
-  SceneManager.cpp
-c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\xmemory0(881): error C2280: 'dae::RenderComponent::RenderComponent(dae::RenderComponent &&) noexcept': attempting to reference a deleted function
-  c:\users\thile\onedrive\documenten\jaar2dae\prog4\minigin\exam_assignment\minigin\rendercomponent.h(20): note: see declaration of 'dae::RenderComponent::RenderComponent'
-  c:\users\thile\onedrive\documenten\jaar2dae\prog4\minigin\exam_assignment\minigin\rendercomponent.h(20): note: 'dae::RenderComponent::RenderComponent(dae::RenderComponent &&) noexcept': function was explicitly deleted
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(900): note: see reference to function template instantiation 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,_Ty>(_Alloc &,_Objty *const ,_Ty &&)' being compiled
-          with
-          [
-              _Alloc=std::allocator<dae::RenderComponent>,
-              _Ty=dae::RenderComponent,
-              _Objty=dae::RenderComponent
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(902): note: see reference to function template instantiation 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,_Ty>(_Alloc &,_Objty *const ,_Ty &&)' being compiled
-          with
-          [
-              _Alloc=std::allocator<dae::RenderComponent>,
-              _Ty=dae::RenderComponent,
-              _Objty=dae::RenderComponent
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(916): note: see reference to function template instantiation 'void std::vector<dae::RenderComponent,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<_Ty>(_Ty &&)' being compiled
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(937): note: see reference to function template instantiation 'void std::vector<dae::RenderComponent,std::allocator<_Ty>>::emplace_back<dae::RenderComponent>(dae::RenderComponent &&)' being compiled
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\vector(936): note: while compiling class template member function 'void std::vector<dae::RenderComponent,std::allocator<_Ty>>::push_back(_Ty &&)'
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
-  c:\users\thile\onedrive\documenten\jaar2dae\prog4\minigin\exam_assignment\minigin\scene.h(33): note: see reference to function template instantiation 'void std::vector<dae::RenderComponent,std::allocator<_Ty>>::push_back(_Ty &&)' being compiled
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
-  c:\users\thile\onedrive\documenten\jaar2dae\prog4\minigin\exam_assignment\minigin\scene.h(38): note: see reference to class template instantiation 'std::vector<dae::RenderComponent,std::allocator<_Ty>>' being compiled
-          with
-          [
-              _Ty=dae::RenderComponent
-          ]
+  ResourceManager.cpp
   Generating Code...
+     Creating library C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\Win32\Debug\Minigin.lib and object C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\Win32\Debug\Minigin.exp
+  Minigin.vcxproj -> C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\Win32\Debug\Minigin.exe
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2\lib\x86\SDL2.dll
+  1 File(s) copied
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x86\libjpeg-9.dll
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x86\libpng16-16.dll
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x86\libtiff-5.dll
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x86\libwebp-7.dll
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x86\SDL2_image.dll
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x86\zlib1.dll
+  6 File(s) copied
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_ttf\lib\x86\libfreetype-6.dll
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_ttf\lib\x86\SDL2_ttf.dll
+  2 File(s) copied

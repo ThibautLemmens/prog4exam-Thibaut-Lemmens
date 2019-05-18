@@ -6,20 +6,12 @@ void dae::SceneManager::Update()
 {
 	for(auto &scene : mScenes)
 	{
-		scene.Update();
-	}
-}
-
-void dae::SceneManager::Render()
-{
-	for (auto& scene : mScenes)
-	{
-		scene.Render();
+		scene->Update();
 	}
 }
 
 dae::Scene* dae::SceneManager::CreateScene(const std::string& name)
 {
-	mScenes.push_back(Scene(name));
-	return &mScenes.back();
+	mScenes.push_back(new Scene(name));
+	return mScenes.back();
 }

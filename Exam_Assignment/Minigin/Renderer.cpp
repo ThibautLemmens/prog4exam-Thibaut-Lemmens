@@ -1,7 +1,7 @@
 #include "MiniginPCH.h"
 #include "Renderer.h"
 #include <SDL.h>
-#include "SceneManager.h"
+#include "RenderComponent.h"
 #include "Texture2D.h"
 
 void dae::Renderer::Init(SDL_Window * window)
@@ -17,7 +17,10 @@ void dae::Renderer::Render()
 {
 	SDL_RenderClear(mRenderer);
 
-	SceneManager::GetInstance().Render();
+	for (RenderComponent RC : m_RenderComponentes)
+	{
+		RC.Render();
+	}
 	
 	SDL_RenderPresent(mRenderer);
 }
@@ -67,4 +70,10 @@ void dae::Renderer::RenderTexture(const Texture2D& texture, SDL_Rect* dst , SDL_
 void dae::Renderer::RenderTexture(const Texture2D & texture, SDL_Rect* dst) const
 {
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, dst);
+}
+
+dae::RenderComponent * dae::Renderer::GetComponent(TransformComponent * transform)
+{
+	m_RenderComponentes.push_back(RenderComponent(transform));
+	return &m_RenderComponentes.back();
 }

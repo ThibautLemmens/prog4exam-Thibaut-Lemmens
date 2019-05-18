@@ -12,13 +12,12 @@ namespace dae
 		Scene* CreateScene(const std::string& name);
 
 		void Update();
-		void Render();
 
-		Scene* PresistendScene() { return &mScenes[0]; };
+		Scene* PresistendScene() { return mScenes[0]; };
 
 
 	private:
-		std::vector<Scene> mScenes;
+		std::vector<Scene*> mScenes;
 	};
 
 }

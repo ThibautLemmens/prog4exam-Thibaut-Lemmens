@@ -20,22 +20,7 @@ namespace dae
 		Scene& operator=(const Scene& other) = delete;
 		Scene& operator=(Scene&& other) = delete;
 
-		void Render()
-		{
-			for (RenderComponent& RC : m_RenderComponentes)
-			{
-				RC.Render();
-			}
-		};
-
-		RenderComponent* GetComponent(TransformComponent* transform)
-		{
-			m_RenderComponentes.push_back(RenderComponent(transform));
-			return &m_RenderComponentes.back();
-		}
-
 	private:
-		std::vector<RenderComponent> m_RenderComponentes;
 
 		explicit Scene(const std::string& name);
 

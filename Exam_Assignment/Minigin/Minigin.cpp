@@ -4,7 +4,7 @@
 #include <thread>
 #include "InputManager.h"
 #include "SceneManager.h"
-//#include "Renderer.h"
+#include "Renderer.h"
 #include "ResourceManager.h"
 #include <SDL.h>
 //#include "TextObject.h"
