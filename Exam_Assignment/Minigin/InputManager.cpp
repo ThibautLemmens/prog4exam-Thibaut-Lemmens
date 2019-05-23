@@ -1,4 +1,5 @@
 #include "MiniginPCH.h"
+#include "Logger.h"
 #include "InputManager.h"
 #include <SDL.h>
 
@@ -26,27 +27,32 @@ bool dae::InputManager::ProcessInput()
 
 bool dae::InputManager::IsPressed(ControllerButton button) const
 {
-	switch (button)
+	return (currentState.Gamepad.wButtons & static_cast<WORD>(button)) != 0;
+}
+
+Command* dae::InputManager::GetCommand(std::string name)
+{
+	std::unordered_map<std::string, Command*>::iterator i = m_Commands.find(name);
+	if (i == m_Commands.end())
 	{
-	case ControllerButton::ButtonA:
-		return currentState.Gamepad.wButtons & XINPUT_GAMEPAD_A;
-	case ControllerButton::ButtonB:
-		return currentState.Gamepad.wButtons & XINPUT_GAMEPAD_B;
-	case ControllerButton::ButtonX:
-		return currentState.Gamepad.wButtons & XINPUT_GAMEPAD_X;
-	case ControllerButton::ButtonY:
-		return currentState.Gamepad.wButtons & XINPUT_GAMEPAD_Y;
-	default: return false;
+		return nullptr;
+		Logger::LogError(L"Command does not Exists");
+	}
+	else
+	{
+		return (*i).second;
 	}
 }
 
-
-
-InputManager::InputManager()
+void dae::InputManager::AddCommand(std::string name, Command * command)
 {
-}
-
-
-InputManager::~InputManager()
-{
+	std::unordered_map<std::string, Command*>::iterator i = m_Commands.find(name);
+	if (i != m_Commands.end())
+	{
+		Logger::LogError(L"Command Already Exists");
+	}
+	else
+	{
+		m_Commands.insert(std::pair<std::string, Command*>(name, command));
+	}
 }

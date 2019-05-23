@@ -1,6 +1,6 @@
 #pragma once
 #include <memory>
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "Texture2D.h"
 #include "SceneObject.h"
 
@@ -12,7 +12,8 @@ namespace dae
 		void Update() override;
 
 		void SetTexture(const std::string& filename);
-		void SetPosition(float x, float y);
+		void SetPosition(float x, float y, float z);
+		TransformComponent* Transform() { return &m_Transform; };
 
 		GameObject() = default;
 		virtual ~GameObject();
@@ -22,7 +23,7 @@ namespace dae
 		GameObject& operator=(GameObject&& other) = delete;
 
 	private:
-		Transform mTransform;
+		TransformComponent m_Transform;
 		std::shared_ptr<Texture2D> mTexture;
 	};
 }

@@ -7,7 +7,6 @@ struct SDL_Rect;
 namespace dae
 {
 	class Texture2D;
-	class RenderComponent;
 	class TransformComponent;
 	class Renderer final : public Singleton<Renderer>
 	{
@@ -27,6 +26,8 @@ namespace dae
 		SDL_Renderer* GetSDLRenderer() const { return mRenderer; };
 
 		RenderComponent* GetComponent(TransformComponent* transform);
+
+		bool Sort(const RenderComponent& rc1,const RenderComponent& rc2);
 
 	private:
 		std::vector<RenderComponent> m_RenderComponentes;

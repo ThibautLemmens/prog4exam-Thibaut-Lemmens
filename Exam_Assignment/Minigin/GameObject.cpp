@@ -12,7 +12,7 @@ void dae::GameObject::SetTexture(const std::string& filename)
 	mTexture = ResourceManager::GetInstance().LoadTexture(filename);
 }
 
-void dae::GameObject::SetPosition(float x, float y)
+void dae::GameObject::SetPosition(float x, float y, float z)
 {
-	mTransform.SetPosition(x, y, 0.0f);
+	m_Transform.Position(x, y, z);
 }

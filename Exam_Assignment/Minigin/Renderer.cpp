@@ -77,3 +77,8 @@ dae::RenderComponent * dae::Renderer::GetComponent(TransformComponent * transfor
 	m_RenderComponentes.push_back(RenderComponent(transform));
 	return &m_RenderComponentes.back();
 }
+
+bool dae::Renderer::Sort(const RenderComponent & rc1, const RenderComponent & rc2)
+{
+	return true;//rc1.
+}

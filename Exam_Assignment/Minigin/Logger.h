@@ -20,11 +20,11 @@ namespace dae
 	{
 	public:
 
-		static void LogWarning(const std::wstring& wstr) { Log(LogType::Warning, wstr); };
-		static void LogError(const std::wstring& wstr) { Log(LogType::Error, wstr); };
-		static void LogInfo(const std::wstring& wstr) { Log(LogType::Info, wstr); };
-		static void LogDefault(const std::wstring& wstr) { Log(LogType::Default, wstr); };
-		static void LogTodo(const std::wstring& wstr) { Log(LogType::Todo, wstr); };
+		static void LogWarning(const std::wstring& wstr, ...) { Log(LogType::Warning, wstr); };
+		static void LogError(const std::wstring& wstr, ...) { Log(LogType::Error, wstr); };
+		static void LogInfo(const std::wstring& wstr, ...) { Log(LogType::Info, wstr); };
+		static void LogDefault(const std::wstring& wstr, ...) { Log(LogType::Default, wstr); };
+		static void LogTodo(const std::wstring& wstr, ...) { Log(LogType::Todo, wstr); };
 
 		static void Log(LogType type, const std::wstring& str)
 		{

@@ -33,7 +33,7 @@ namespace dae
 			std::unordered_map<std::string, Clip>::iterator i = m_Clips.find(ClipnName);
 			if (i != m_Clips.end())
 			{
-				Logger::LogError(L"Animation Clip Already Exists");
+				Logger::LogError(L"\"%s\" Animation Clip Already Exists", ClipnName.c_str());
 			}
 			else
 			{
@@ -59,10 +59,11 @@ namespace dae
 				m_timer = 0;
 			}
 		};
+		virtual void Initialize() override {};
 
-		void Update()
+		virtual void Update() override
 		{
-			m_timer += 0.16f;
+			m_timer += Time::GetInstance().DeltaTime();
 			if (m_timer >= m_currentClip->TickRate)
 			{
 				m_timer -= m_currentClip->TickRate;

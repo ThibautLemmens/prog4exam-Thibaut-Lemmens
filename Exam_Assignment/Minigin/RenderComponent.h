@@ -12,8 +12,11 @@ namespace dae
 	{
 
 	public:
-		RenderComponent(TransformComponent* transform) :m_Transform{ transform } {};
+		RenderComponent(TransformComponent* Transform) { m_Transform = Transform; };
 		virtual ~RenderComponent() {};
+
+		virtual void Initialize() override {};
+		virtual void Update() override {};
 
 		RenderComponent(const RenderComponent& other) :m_Animator{ other.m_Animator }, m_HasAnimator{ other.m_HasAnimator }, m_Transform{ other.m_Transform } {};
 		RenderComponent(RenderComponent&& other) noexcept :m_Animator{ other.m_Animator }, m_HasAnimator{ other.m_HasAnimator }, m_Transform{ other.m_Transform } {};
@@ -22,7 +25,7 @@ namespace dae
 
 		void Render() const;
 
-		void AttachAnimator(AnimatorComponent& animator) { if (m_HasAnimator) { Logger::LogWarning(L"Animator already attached, reattached"); } m_HasAnimator = true; m_Animator = &animator; };
+		void AttachAnimator(AnimatorComponent& animator) { if (m_HasAnimator) { Logger::LogInfo(L"Animator already attached -> reattaching Animator"); } m_HasAnimator = true; m_Animator = &animator; };
 
 	private:
 		Texture2D* m_Texture = nullptr;

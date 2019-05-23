@@ -2,9 +2,11 @@
 #include "Logger.h"
 #include "Time.h"
 #include <functional>
-class GameObject;
+
 namespace dae
 {
+	class GameObject;
+	class TransformComponent;
 	class BaseComponent
 	{
 		//friend class GameObject;
@@ -12,15 +14,19 @@ namespace dae
 	public:
 		BaseComponent() :m_pGameObject{nullptr} {};
 		virtual ~BaseComponent() {};
+		
 		GameObject* GetGameObject() { return m_pGameObject; };
+
 		BaseComponent(const BaseComponent& other) = delete;
 		BaseComponent(BaseComponent&& other) noexcept = delete;
 		BaseComponent& operator=(const BaseComponent& other) = delete;
 		BaseComponent& operator=(BaseComponent&& other) noexcept = delete;
 
+		TransformComponent* GetTransform() const;
+
 	protected:
-		virtual void Initialize() {};
-		virtual void Update(float) {};
+		virtual void Initialize() =0;
+		virtual void Update() =0;
 
 		GameObject* m_pGameObject;
 	};
