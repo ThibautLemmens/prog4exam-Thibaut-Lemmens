@@ -15,6 +15,7 @@ void dae::stateMachineComponent::AddState(State * state)
 	}
 	else
 	{
+		state->StateMachine = this;
 		m_States.insert(std::pair<std::string, State*>(state->Name, state));
 	}
 }

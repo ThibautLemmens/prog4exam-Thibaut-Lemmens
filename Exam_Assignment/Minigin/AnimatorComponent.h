@@ -88,7 +88,7 @@ namespace dae
 		};
 		
 		//gets
-		float TickRate() const { return m_tickRate; };
+		float TickRate() const { return m_currentClip->TickRate; };
 		int CurrentFrame() const { return m_CurrentFrame; };
 		int Cols() const { return m_Cols; };
 		int Rows() const { return m_Rows; };
@@ -99,7 +99,6 @@ namespace dae
 		std::unordered_map<std::string, Clip> m_Clips;
 		Clip* m_currentClip;
 
-		float m_tickRate;
 		float m_timer;
 		int m_CurrentFrame;
 	};

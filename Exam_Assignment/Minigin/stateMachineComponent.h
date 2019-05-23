@@ -17,6 +17,8 @@ namespace dae
 
 		//Attach animator for animation on entry of state
 		void AttachAnimator(AnimatorComponent& animator) { if (m_HasAnimator) { Logger::LogInfo(L"Animator already attached -> reattaching Animator"); } m_HasAnimator = true; m_Animator = &animator; };
+		void PlayAnimation() { if(m_CurrentState->AnimatorClipName.size() != 0 && m_HasAnimator) m_Animator->PlayClip(m_CurrentState->AnimatorClipName); };
+		void PlayAnimation(std::string AnimationName) { if (m_HasAnimator) m_Animator->PlayClip(AnimationName); };
 
 		//set statemachine to entry state
 		void Reset();
@@ -43,19 +45,25 @@ namespace dae
 		AnimatorComponent* m_Animator;
 	};
 
+	//remember to init the name in constructor when inheriting;
 	class State
 	{
 	public:
+		State(std::string name) { Name = name; };
+		stateMachineComponent* StateMachine;
 		std::string Name;
 		std::string AnimatorClipName;
-		stateMachineComponent* StateMachine;
+		//Advised to not call, only set
+		virtual void Entry() { StateMachine->PlayAnimation(); };
+		//Advised to not call, only set
+		virtual void Update() {};
+		//Advised to not call, only set
+		virtual void End() {};
 
-		//Advised to not call, only set
-		void Entry() {};
-		//Advised to not call, only set
-		void Update() {};
-		//Advised to not call, only set
-		void End() {};
+		const stateMachineComponent* const GetStateMachine() const { return StateMachine; };
+
+	private:
+		
 	};
 
 }

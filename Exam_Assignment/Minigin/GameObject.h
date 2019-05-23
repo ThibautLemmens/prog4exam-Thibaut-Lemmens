@@ -22,8 +22,33 @@ namespace dae
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;
 
+
+		template <class T>
+		bool GetComponent()
+		{
+			return GetComponent<T>() != nullptr;
+		}
+
+		template <class T>
+		T* GetComponent()
+		{
+			const type_info& ti = typeid(T);
+			for (auto* component : m_Components)
+			{
+				if (component && typeid(*component) == ti)
+					return static_cast<T*>(component);
+			}
+			return nullptr;
+		}
+
+		void AddComponent(BaseComponent* component)
+		{
+			m_Components.push_back(component);
+		};
+
 	private:
 		TransformComponent m_Transform;
 		std::shared_ptr<Texture2D> mTexture;
+		std::vector<BaseComponent*> m_Components
 	};
 }

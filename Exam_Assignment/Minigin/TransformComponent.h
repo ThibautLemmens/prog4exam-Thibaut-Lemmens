@@ -20,6 +20,12 @@ namespace dae
 		void Position(float x, float y, float z)
 		{m_Position = glm::vec3(x,y,z);};
 
+		//move adds to current Positions
+		void Move(float x, float y, float z)
+		{m_Position += glm::vec3(x, y, z);};
+		void Move(glm::vec3 Pos)
+		{m_Position += Pos;};
+
 		//get and set Pos
 		const glm::vec2 Scale()const
 		{return m_Scale;};
