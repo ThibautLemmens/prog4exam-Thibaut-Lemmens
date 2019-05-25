@@ -13,7 +13,16 @@ namespace dae
 
 		//get and set Pos
 		const glm::vec3 Position()const
-		{return m_Position;};
+		{
+			if (m_Parent)
+			{
+				return m_Parent->Position() + m_Position;
+			}
+			else
+			{
+				return m_Position;
+			} 
+		};
 
 		void Position(glm::vec3 Pos)
 		{m_Position = Pos;};
@@ -28,7 +37,16 @@ namespace dae
 
 		//get and set Pos
 		const glm::vec2 Scale()const
-		{return m_Scale;};
+		{
+			if (m_Parent)
+			{
+				return m_Parent->Scale() + m_Scale;
+			}
+			else
+			{
+				return m_Scale;
+			}
+		};
 
 		void Scale(glm::vec2 scale)
 		{m_Scale = scale;};
@@ -38,9 +56,42 @@ namespace dae
 		virtual void Initialize() override {};
 		virtual void Update() override {};
 
+		void Parent(TransformComponent* Parent) { Parent->AddChild(this); };
+		TransformComponent* const Parent() { return m_Parent; };
+
+		void AddChild(TransformComponent*Child)
+		{
+			if (Child->Parent() != nullptr)
+			{
+				m_Children.push_back(Child); Child->Parent(this);
+			}
+			else
+			{
+				Child->Parent()->RemoveChild(Child);
+				m_Children.push_back(Child); Child->Parent(this);
+			}
+		};
+
+		void RemoveChild(TransformComponent*Child)
+		{
+			for (size_t i{0}; i < m_Children.size(); i++)
+			{
+				if (m_Children[i] == Child)
+				{
+					std::swap(m_Children.back(), m_Children[i]);
+					m_Children.pop_back();
+					Child->ResetParent();
+				}
+			}
+		}
+
 	private:
+		TransformComponent* m_Parent;
+		std::vector<TransformComponent*> m_Children;
 
 		glm::vec3 m_Position;
 		glm::vec2 m_Scale;
+
+		void ResetParent() { m_Parent = nullptr; };
 	};
 }

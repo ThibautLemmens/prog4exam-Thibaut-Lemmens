@@ -28,6 +28,9 @@ namespace dae
 		void AttachAnimator(AnimatorComponent& animator) { if (m_HasAnimator) { Logger::LogInfo(L"Animator already attached -> reattaching Animator"); } m_HasAnimator = true; m_Animator = &animator; };
 
 	private:
+		bool HasSource = false;
+		SDL_Rect Source;
+
 		Texture2D* m_Texture = nullptr;
 
 		//Option to have animator
