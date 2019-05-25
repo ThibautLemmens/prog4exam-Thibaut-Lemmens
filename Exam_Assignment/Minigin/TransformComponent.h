@@ -40,13 +40,20 @@ namespace dae
 		{
 			if (m_Parent)
 			{
-				return m_Parent->Scale() + m_Scale;
+				if (m_Flipped) return m_Parent->Scale() * m_Scale * glm::vec2(-1, -1);
+				return m_Parent->Scale() * m_Scale;
 			}
 			else
 			{
+				if(m_Flipped) return m_Scale*glm::vec2(-1,-1);
 				return m_Scale;
 			}
 		};
+
+		//rotates character
+		void Flip() { m_Flipped = !m_Flipped; };
+		void Flip(bool flip) { m_Flipped = flip; };
+
 
 		void Scale(glm::vec2 scale)
 		{m_Scale = scale;};
@@ -91,6 +98,8 @@ namespace dae
 
 		glm::vec3 m_Position;
 		glm::vec2 m_Scale;
+
+		bool m_Flipped = false;
 
 		void ResetParent() { m_Parent = nullptr; };
 	};

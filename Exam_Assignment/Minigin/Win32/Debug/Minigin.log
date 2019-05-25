@@ -1,6 +1,13 @@
-﻿  stateMachineComponent.cpp
-     Creating library C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\Win32\Debug\Minigin.lib and object C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\Win32\Debug\Minigin.exp
-  Minigin.vcxproj -> C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\Win32\Debug\Minigin.exe
+﻿  BaseComponent.cpp
+  GameObject.cpp
+  Minigin.cpp
+  RenderComponent.cpp
+  Renderer.cpp
+  ResourceManager.cpp
+  Scene.cpp
+  SceneManager.cpp
+  Generating Code...
+  Minigin.vcxproj -> C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\Win32\Debug\Minigin.lib
   C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2\lib\x86\SDL2.dll
   1 File(s) copied
   C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x86\libjpeg-9.dll
