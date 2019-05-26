@@ -62,8 +62,6 @@ namespace dae
 		//Advised to not call, only set
 		virtual void End() {};
 
-		//const stateMachineComponent* const GetStateMachine() const { return StateMachine; };
-
 	private:
 		//add privates if you need them
 	};
