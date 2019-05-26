@@ -50,22 +50,25 @@ namespace dae
 			}
 		};
 
-		//rotates character
-		void Flip() { m_Flipped = !m_Flipped; };
-		void Flip(bool flip) { m_Flipped = flip; };
-
-
 		void Scale(glm::vec2 scale)
 		{m_Scale = scale;};
 		void Scale(float x, float y)
 		{m_Scale = glm::vec2(x, y);};
 
+		//rotates character
+		void Flip() { m_Flipped = !m_Flipped; };
+		void Flip(bool flip) { m_Flipped = flip; };
+
+		//empty
 		virtual void Initialize() override {};
+		//empty
 		virtual void Update() override {};
 
+		//get and set Parent
 		void Parent(TransformComponent* Parent) { Parent->AddChild(this); };
 		TransformComponent* const Parent() { return m_Parent; };
 
+		//give a child to this obj
 		void AddChild(TransformComponent*Child)
 		{
 			if (Child->Parent() != nullptr)
@@ -79,6 +82,7 @@ namespace dae
 			}
 		};
 
+		//remove a child from this obj
 		void RemoveChild(TransformComponent*Child)
 		{
 			for (size_t i{0}; i < m_Children.size(); i++)

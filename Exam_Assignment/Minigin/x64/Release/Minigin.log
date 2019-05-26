@@ -1,0 +1,30 @@
+﻿  MiniginPCH.cpp
+  BaseComponent.cpp
+  Font.cpp
+  GameObject.cpp
+  InputComponent.cpp
+  InputManager.cpp
+  Log.cpp
+  Main.cpp
+  Minigin.cpp
+  RenderComponent.cpp
+  Renderer.cpp
+  ResourceManager.cpp
+  Scene.cpp
+  SceneManager.cpp
+  stateMachineComponent.cpp
+  Texture2D.cpp
+  Transform.cpp
+  Minigin.vcxproj -> C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\x64\Release\Minigin.lib
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2\lib\x64\SDL2.dll
+  1 File(s) copied
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libpng16-16.dll
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libtiff-5.dll
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libwebp-7.dll
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x64\SDL2_image.dll
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x64\zlib1.dll
+  6 File(s) copied
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_ttf\lib\x64\libfreetype-6.dll
+  C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2_ttf\lib\x64\SDL2_ttf.dll
+  2 File(s) copied

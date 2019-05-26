@@ -33,7 +33,7 @@ namespace dae
 			std::unordered_map<std::string, Clip>::iterator i = m_Clips.find(ClipnName);
 			if (i != m_Clips.end())
 			{
-				Logger::LogError(L"\"%s\" Animation Clip Already Exists", ClipnName.c_str());
+				Logger::LogError(L"Animation Clip Already Exists");
 			}
 			else
 			{

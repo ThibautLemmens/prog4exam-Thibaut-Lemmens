@@ -30,7 +30,7 @@ bool dae::InputManager::IsPressed(ControllerButton button) const
 	return (currentState.Gamepad.wButtons & static_cast<WORD>(button)) != 0;
 }
 
-Command* dae::InputManager::GetCommand(std::string name)
+dae::Command* dae::InputManager::GetCommand(std::string name)
 {
 	std::unordered_map<std::string, Command*>::iterator i = m_Commands.find(name);
 	if (i == m_Commands.end())

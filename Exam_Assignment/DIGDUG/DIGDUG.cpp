@@ -3,8 +3,15 @@
 
 #include "pch.h"
 #include "Minigin.h"
+//#include "MiniginPCH.h"
+#include "Logger.h"
+using namespace dae;
 
 int main()
 {
-	
+	Logger::LogInfo(L"Test");
+	Logger::LogDefault(L"Test");
+	Logger::LogError(L"Test");
+	Logger::LogWarning(L"Test");
+	Logger::LogTodo(L"Test");
 }

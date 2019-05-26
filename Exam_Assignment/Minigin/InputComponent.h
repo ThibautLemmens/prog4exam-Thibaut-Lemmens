@@ -4,6 +4,7 @@
 
 namespace dae
 {
+	
 	class InputComponent final : public BaseComponent
 	{
 	public:
@@ -11,6 +12,7 @@ namespace dae
 		~InputComponent();
 		//get Command from InputManager
 		void AddCommand(std::string command);
+		void RemoveCommand(std::string command);
 	private:
 		std::unordered_map<std::string,Command*> m_pCommands;
 	};

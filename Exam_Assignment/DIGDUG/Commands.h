@@ -1,6 +1,6 @@
 #pragma once
 #include "Command.h"
-
+using namespace dae;
 //player
 class PumpCommand final : public Command
 {
@@ -16,7 +16,7 @@ public:
 	float Speed;
 };
 
-class Move final : public Command
+class EnterCommand	 final : public Command
 {
 public:
 	virtual void Execute() override;
