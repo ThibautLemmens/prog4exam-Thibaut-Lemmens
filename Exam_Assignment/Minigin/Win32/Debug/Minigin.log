@@ -1,21 +1,4 @@
-﻿  MiniginPCH.cpp
-  BaseComponent.cpp
-  Font.cpp
-  GameObject.cpp
-  InputComponent.cpp
-  InputManager.cpp
-  Log.cpp
-  Main.cpp
-  Minigin.cpp
-  RenderComponent.cpp
-  Renderer.cpp
-  ResourceManager.cpp
-  Scene.cpp
-  SceneManager.cpp
-  Texture2D.cpp
-  Transform.cpp
-  stateMachineComponent.cpp
-  Generating Code...
+﻿  InputManager.cpp
   Minigin.vcxproj -> C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\Win32\Debug\Minigin.lib
   C:\Users\thile\OneDrive\Documenten\jaar2DAE\prog4\Minigin\Exam_Assignment\3rdParty\SDL2\lib\x86\SDL2.dll
   1 File(s) copied

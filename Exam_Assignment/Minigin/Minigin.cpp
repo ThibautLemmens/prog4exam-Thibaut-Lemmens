@@ -77,8 +77,8 @@ void dae::Minigin::Run()
 			sceneManager.Update();
 			renderer.Render();
 
-			//t += std::chrono::milliseconds(msPerFrame);
-			//std::this_thread::sleep_until(t);
+			float t{ 0.16f - time.DeltaTime() };
+			std::this_thread::sleep_for(std::chrono::milliseconds(long long(t)));
 		}
 	}
 
