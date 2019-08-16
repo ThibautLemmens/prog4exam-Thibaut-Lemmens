@@ -1,9 +1,10 @@
 #pragma once
 #include "BaseComponent.h"
 #include "glm\common.hpp"
+#include <Vector>
 
 namespace dae
-{ 
+{
 	class TransformComponent final : public BaseComponent
 	{
 	public:
@@ -21,39 +22,51 @@ namespace dae
 			else
 			{
 				return m_Position;
-			} 
+			}
 		};
 
 		void Position(glm::vec3 Pos)
-		{m_Position = Pos;};
+		{
+			m_Position = Pos;
+		};
 		void Position(float x, float y, float z)
-		{m_Position = glm::vec3(x,y,z);};
+		{
+			m_Position = glm::vec3(x, y, z);
+		};
 
 		//move adds to current Positions
 		void Move(float x, float y, float z)
-		{m_Position += glm::vec3(x, y, z);};
+		{
+			m_Position += glm::vec3(x, y, z);
+		};
 		void Move(glm::vec3 Pos)
-		{m_Position += Pos;};
+		{
+			m_Position += Pos;
+		};
 
 		//get and set Pos
 		const glm::vec2 Scale()const
 		{
 			if (m_Parent)
 			{
-				if (m_Flipped) return m_Parent->Scale() * m_Scale * glm::vec2(-1, -1);
+				if (m_Flipped) return m_Parent->Scale() * m_Scale * glm::vec2(-1, 1);
 				return m_Parent->Scale() * m_Scale;
 			}
 			else
 			{
-				if(m_Flipped) return m_Scale*glm::vec2(-1,-1);
+				if (m_Flipped) return m_Scale * glm::vec2(-1, 1);
 				return m_Scale;
 			}
 		};
 
 		void Scale(glm::vec2 scale)
-		{m_Scale = scale;};
+		{
+			m_Scale = scale;
+		};
 		void Scale(float x, float y)
-		{m_Scale = glm::vec2(x, y);};
+		{
+			m_Scale = glm::vec2(x, y);
+		};
 
 		//rotates character
 		void Flip() { m_Flipped = !m_Flipped; };
@@ -65,27 +78,35 @@ namespace dae
 		virtual void Update() override {};
 
 		//get and set Parent
-		void Parent(TransformComponent* Parent) { Parent->AddChild(this); };
+		void Parent(TransformComponent* Parent, bool CurrentLocation)
+		{
+			m_Parent = Parent;
+			Parent->InsertChild(this);
+			if (CurrentLocation)
+			{
+				m_Position = m_Parent->Position() - m_Position;
+			}
+		};
 		TransformComponent* const Parent() { return m_Parent; };
 
 		//give a child to this obj
-		void AddChild(TransformComponent*Child)
+		void AddChild(TransformComponent*Child, bool CurrentLocation)
 		{
-			if (Child->Parent() != nullptr)
+			if (Child->Parent() == nullptr)
 			{
-				m_Children.push_back(Child); Child->Parent(this);
+				m_Children.push_back(Child); Child->Parent(this, CurrentLocation);
 			}
 			else
 			{
 				Child->Parent()->RemoveChild(Child);
-				m_Children.push_back(Child); Child->Parent(this);
+				m_Children.push_back(Child); Child->Parent(this, CurrentLocation);
 			}
 		};
 
 		//remove a child from this obj
 		void RemoveChild(TransformComponent*Child)
 		{
-			for (size_t i{0}; i < m_Children.size(); i++)
+			for (size_t i{ 0 }; i < m_Children.size(); i++)
 			{
 				if (m_Children[i] == Child)
 				{
@@ -95,6 +116,8 @@ namespace dae
 				}
 			}
 		}
+
+
 
 	private:
 		TransformComponent* m_Parent;
@@ -106,5 +129,6 @@ namespace dae
 		bool m_Flipped = false;
 
 		void ResetParent() { m_Parent = nullptr; };
+		void InsertChild(TransformComponent* child) { m_Children.push_back(child); };
 	};
 }

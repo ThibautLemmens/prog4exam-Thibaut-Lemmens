@@ -29,8 +29,10 @@ void dae::RenderComponent::Render() const
 		if (m_HasSource)
 		{
 			Renderer::GetInstance().RenderTexture(*m_Texture, &m_Dest, &m_Source);
+			return;
 		}
-		Renderer::GetInstance().RenderTexture(*m_Texture, &m_Dest));
+		Renderer::GetInstance().RenderTexture(*m_Texture, &m_Dest);
+		return;
 	}
 	Renderer::GetInstance().RenderTexture(*m_Texture, m_Transform->Position().x, m_Transform->Position().y);
 

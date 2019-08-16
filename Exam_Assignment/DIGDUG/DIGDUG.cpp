@@ -4,11 +4,15 @@
 #include "pch.h"
 #include "Minigin.h"
 //#include "MiniginPCH.h"
+#pragma comment(lib,"xinput.lib")
 #include "Logger.h"
 using namespace dae;
 
 int main()
 {
+	dae::Minigin engine;
+	engine.Run();
+
 	Logger::LogInfo(L"Test");
 	Logger::LogDefault(L"Test");
 	Logger::LogError(L"Test");
