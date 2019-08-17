@@ -24,6 +24,9 @@
     <ClInclude Include="Prefabs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="States.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -33,6 +36,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Prefabs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="States.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

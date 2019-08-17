@@ -13,6 +13,8 @@
 //#include "Logger.h"
 
 
+#include "../DIGDUG/Prefabs.h"
+
 void dae::Minigin::Initialize()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) 
@@ -41,7 +43,8 @@ void dae::Minigin::Initialize()
  */
 void dae::Minigin::LoadGame() const
 {
-	
+	//Prefabs* x = new Prefabs();
+	//x->Init();
 }
 
 void dae::Minigin::Cleanup()

@@ -10,7 +10,7 @@ namespace dae
 		friend Scene* SceneManager::CreateScene(const std::string& name);
 		friend SceneManager::SceneManager();
 	public:
-		void Add(const std::shared_ptr<SceneObject>& object);
+		void Add(SceneObject* object);
 
 		void Update();
 
@@ -25,7 +25,7 @@ namespace dae
 		explicit Scene(const std::string& name);
 
 		std::string mName{};
-		std::vector < std::shared_ptr<SceneObject>> mObjects{};
+		std::vector < SceneObject*> mObjects{};
 
 		static unsigned int idCounter; 
 	};

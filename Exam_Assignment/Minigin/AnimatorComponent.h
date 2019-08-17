@@ -4,10 +4,13 @@
 #include <unordered_map>
 #include <algorithm>
 #include <tuple>
-#include <SDL.h>
+
+struct SDL_Rect;
 
 namespace dae
 {
+
+	
 	struct Clip
 	{
 		std::string Name;
@@ -72,20 +75,7 @@ namespace dae
 			}
 		}
 
-		SDL_Rect GetSource(const int& width,const int& Height)
-		{
-			int srcHeight, srcWidth;
-
-			srcHeight = Height / m_Cols;
-			srcWidth = width / m_Rows;
-
-			SDL_Rect src;
-			src.x = (m_CurrentFrame % m_Cols) * srcWidth;
-			src.y = (m_CurrentFrame / (m_Cols + 1)) * srcHeight;
-			src.w = srcWidth;
-			src.h = srcHeight;
-			return src;
-		};
+		SDL_Rect GetSource(const int& width,const int& Height);
 		
 		//gets
 		float TickRate() const { return m_currentClip->TickRate; };

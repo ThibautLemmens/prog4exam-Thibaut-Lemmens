@@ -1,7 +1,5 @@
 #include "pch.h"
 #include "Prefabs.h"
-#include "Components.h"
-#include "ResourceManager.h"
 
 dae::Prefabs::Prefabs()
 	: Player{ nullptr }
@@ -31,5 +29,9 @@ void dae::Prefabs::Init()
 	PlayerAnimator->AddClip("Die", 4, 5, 0.12f);
 	dae::RenderComponent* PlayerRender = dae::Renderer::GetInstance().GetComponent(Player->Transform());
 	PlayerRender->AttachAnimator(PlayerAnimator);
-	PlayerRender->Texture(dae::ResourceManager::GetInstance().LoadTexture())
+	PlayerRender->Texture(dae::ResourceManager::GetInstance().LoadTexture("../DIGDUG/Resources/Pengo.png"));
+	
+	dae::SceneManager::GetInstance().PresistendScene()->Add(Player);
+	//Player->Transform()->Position(-10, -10, 10);
+
 }

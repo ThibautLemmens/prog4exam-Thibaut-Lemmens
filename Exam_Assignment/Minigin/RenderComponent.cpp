@@ -28,12 +28,23 @@ void dae::RenderComponent::Render() const
 	{
 		if (m_HasSource)
 		{
-			Renderer::GetInstance().RenderTexture(*m_Texture, &m_Dest, &m_Source);
+			Renderer::GetInstance().RenderTexture(*m_Texture, &Convert(m_Dest), &Convert(m_Source));
 			return;
 		}
-		Renderer::GetInstance().RenderTexture(*m_Texture, &m_Dest);
+		Renderer::GetInstance().RenderTexture(*m_Texture, &Convert(m_Dest));
 		return;
 	}
 	Renderer::GetInstance().RenderTexture(*m_Texture, m_Transform->Position().x, m_Transform->Position().y);
 
+}
+
+SDL_Rect dae::RenderComponent::Convert(Rect info) const
+{
+	SDL_Rect a;
+	a.x = info.x;
+	a.y = info.y;
+	a.w = info.length;
+	a.h = info.height;
+
+	return a;
 }

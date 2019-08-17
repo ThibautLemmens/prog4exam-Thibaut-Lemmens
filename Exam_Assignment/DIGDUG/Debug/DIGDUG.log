@@ -1,2 +1,6 @@
-﻿  Prefabs.cpp
-  DIGDUG.vcxproj -> E:\Minigin\Exam_Assignment\Win32\Debug\DIGDUG.exe
+﻿  pch.cpp
+  DIGDUG.cpp
+  Prefabs.cpp
+  States.cpp
+  Generating Code...
+LINK : fatal error LNK1104: cannot open file 'Minigin.lib'

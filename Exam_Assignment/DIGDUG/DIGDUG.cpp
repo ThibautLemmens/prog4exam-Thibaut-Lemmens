@@ -3,13 +3,16 @@
 
 #include "pch.h"
 #include "Minigin.h"
-//#include "MiniginPCH.h"
+#include "MiniginPCH.h"
 #pragma comment(lib,"xinput.lib")
 #include "Logger.h"
+#include "Prefabs.h"
 using namespace dae;
 
 int main()
 {
+
+
 	dae::Minigin engine;
 	engine.Run();
 
@@ -18,4 +21,6 @@ int main()
 	Logger::LogError(L"Test");
 	Logger::LogWarning(L"Test");
 	Logger::LogTodo(L"Test");
+
+	return 0;
 }

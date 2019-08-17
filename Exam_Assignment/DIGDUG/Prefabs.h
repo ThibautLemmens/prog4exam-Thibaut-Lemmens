@@ -1,5 +1,9 @@
 #pragma once
 #include "GameObject.h"
+#include "Components.h"
+#include "ResourceManager.h"
+#include "Scene.h"
+
 
 namespace dae
 {
