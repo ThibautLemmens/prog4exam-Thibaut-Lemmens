@@ -1,6 +1,4 @@
-﻿  BaseComponent.cpp
-  GameObject.cpp
-  Minigin.cpp
+﻿  Minigin.cpp
   RenderComponent.cpp
   Renderer.cpp
   ResourceManager.cpp

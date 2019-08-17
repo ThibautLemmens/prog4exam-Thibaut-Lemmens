@@ -9,6 +9,8 @@ namespace dae
 		Prefabs();
 		~Prefabs();
 
+		void Init();
+
 	private:
 		GameObject* Player;
 		GameObject* IceBlock;
