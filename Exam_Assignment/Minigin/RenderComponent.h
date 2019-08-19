@@ -33,7 +33,9 @@ namespace dae
 
 		void AttachAnimator(AnimatorComponent* animator) { if (m_HasAnimator) { Logger::LogInfo(L"Animator already attached -> reattaching Animator"); } m_HasAnimator = true; m_Animator = animator; };
 
+		//set Texture
 		void Texture(std::shared_ptr<dae::Texture2D> texture) { m_Texture = texture; };
+		//get Texture
 		std::shared_ptr<dae::Texture2D> const Texture() const { return m_Texture; };
 
 		void SetDimensions(Rect dest, Rect source) { m_Source = source; m_Dest = dest; m_HasSource = true; m_HasDest = true; };

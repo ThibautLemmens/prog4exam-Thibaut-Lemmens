@@ -2,7 +2,13 @@
 #include "GameObject.h"
 #include "ResourceManager.h"
 
-dae::GameObject::~GameObject() = default;
+dae::GameObject::~GameObject()
+{
+	for (auto c :m_Components)
+	{
+		delete c;
+	}
+}
 
 void dae::GameObject::Update(){}
 

@@ -8,7 +8,7 @@ namespace dae
 	{
 	public:
 		SceneManager() { CreateScene("Presistend"); };
-
+		~SceneManager();
 		Scene* CreateScene(const std::string& name);
 
 		void Update();

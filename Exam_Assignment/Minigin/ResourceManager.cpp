@@ -41,6 +41,38 @@ std::shared_ptr<dae::Texture2D> dae::ResourceManager::LoadTexture(const std::str
 	return std::make_shared<Texture2D>(texture);
 }
 
+bool dae::ResourceManager::StoreTexture(const std::string & name, std::shared_ptr<Texture2D> tex)
+{
+	if (tex == nullptr)
+	{
+		dae::Logger::LogWarning(L"[ResourceManager] Cant Store! Texture is Nullptr");
+		return false;
+	}
+	std::unordered_map<std::string, std::shared_ptr<Texture2D>>::iterator i = m_Textures.find(name);
+	if (i != m_Textures.end())
+	{
+		Logger::LogError(L"[ResourceManager] Cant Store! Name Already Exists");
+	}
+
+	m_Textures.insert(std::pair<std::string, std::shared_ptr<Texture2D>>(name, tex));
+
+	return true;
+}
+
+std::shared_ptr<dae::Texture2D> dae::ResourceManager::GetTexture(const std::string & name)
+{
+	std::unordered_map<std::string, std::shared_ptr<Texture2D>>::iterator i = m_Textures.find(name);
+	if (i == m_Textures.end())
+	{
+		Logger::LogError(L"[ResourceManager] Cant get! Name doesn't Exists");
+		return nullptr;
+	}
+	else
+	{
+		return i->second;
+	}
+}
+
 std::shared_ptr<dae::Font> dae::ResourceManager::LoadFont(const std::string& file, unsigned int size)
 {
 	return std::make_shared<Font>(mDataPath + file, size);

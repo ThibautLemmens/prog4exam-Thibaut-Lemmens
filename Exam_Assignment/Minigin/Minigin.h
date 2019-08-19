@@ -1,6 +1,7 @@
 #pragma once
 
 struct SDL_Window;
+class Prefabs;
 
 namespace dae
 {
@@ -13,5 +14,7 @@ namespace dae
 		void LoadGame() const;
 		void Cleanup();
 		void Run();
+	private:
+		
 	};
 }

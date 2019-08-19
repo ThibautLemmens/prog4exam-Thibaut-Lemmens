@@ -6,6 +6,7 @@
 
 void dae::RenderComponent::Render() const
 {
+	if (m_Texture == nullptr) { return; }
 	if (m_HasAnimator)
 	{
 		//dest

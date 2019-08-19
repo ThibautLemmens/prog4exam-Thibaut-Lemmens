@@ -24,7 +24,10 @@ namespace dae
 	{
 	public:
 		AnimatorComponent(int col, int row) :m_Cols{col}, m_Rows{row}{};
-		virtual ~AnimatorComponent() {};
+		virtual ~AnimatorComponent()
+		{ 
+			delete m_currentClip;
+		};
 
 		AnimatorComponent(const AnimatorComponent& other) = delete;
 		AnimatorComponent(AnimatorComponent&& other) noexcept = delete;

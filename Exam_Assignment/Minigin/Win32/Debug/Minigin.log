@@ -1,2 +1,14 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppClean.targets(76,5): warning : The process cannot access the file 'e:\minigin\exam_assignment\minigin\win32\debug\minigin.pch' because it is being used by another process.
-C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppCommon.targets(310,5): error MSB3061: Unable to delete file "Win32\Debug\Minigin.pch". The process cannot access the file 'E:\Minigin\Exam_Assignment\Minigin\Win32\Debug\Minigin.pch' because it is being used by another process.
+﻿  ResourceManager.cpp
+  Minigin.vcxproj -> E:\Minigin\Exam_Assignment\Win32\Debug\Minigin.lib
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2\lib\x86\SDL2.dll
+  1 File(s) copied
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x86\libjpeg-9.dll
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x86\libpng16-16.dll
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x86\libtiff-5.dll
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x86\libwebp-7.dll
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x86\SDL2_image.dll
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x86\zlib1.dll
+  6 File(s) copied
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_ttf\lib\x86\libfreetype-6.dll
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_ttf\lib\x86\SDL2_ttf.dll
+  2 File(s) copied

@@ -10,6 +10,14 @@ void dae::SceneManager::Update()
 	}
 }
 
+dae::SceneManager::~SceneManager()
+{
+	for (Scene* scene : mScenes)
+	{
+		delete scene;
+	}
+}
+
 dae::Scene* dae::SceneManager::CreateScene(const std::string& name)
 {
 	mScenes.push_back(new Scene(name));

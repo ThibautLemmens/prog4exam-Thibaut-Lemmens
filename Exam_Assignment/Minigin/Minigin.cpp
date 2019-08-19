@@ -13,7 +13,7 @@
 //#include "Logger.h"
 
 
-#include "../DIGDUG/Prefabs.h"
+#include "../Pengo/Prefabs.h"
 
 void dae::Minigin::Initialize()
 {
@@ -43,8 +43,8 @@ void dae::Minigin::Initialize()
  */
 void dae::Minigin::LoadGame() const
 {
-	//Prefabs* x = new Prefabs();
-	//x->Init();
+	Prefabs x;
+	x.Init();
 }
 
 void dae::Minigin::Cleanup()
@@ -60,7 +60,7 @@ void dae::Minigin::Run()
 	Initialize();
 
 	// tell the resource manager where he can find the game data
-	ResourceManager::GetInstance().Init("../Data/");
+	ResourceManager::GetInstance().Init("../Resources/");
 
 	LoadGame();
 
