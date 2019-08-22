@@ -10,7 +10,7 @@ namespace dae
 		SceneManager() { CreateScene("Presistend"); };
 		~SceneManager();
 		Scene* CreateScene(const std::string& name);
-
+		void AddScene(Scene* scene);
 		void Update();
 
 		Scene* PresistendScene() { return mScenes[0]; };

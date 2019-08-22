@@ -13,13 +13,22 @@ void dae::Renderer::Init(SDL_Window * window)
 	}
 }
 
+void dae::Renderer::RenderUpdate()
+{
+	for (RenderComponent* RC : m_RenderComponentes)
+	{
+		RC->RenderUpdate();
+	}
+
+}
+
 void dae::Renderer::Render()
 {
 	SDL_RenderClear(mRenderer);
 
-	for (RenderComponent RC : m_RenderComponentes)
+	for (RenderComponent* RC : m_RenderComponentes)
 	{
-		RC.Render();
+		RC->Render();
 	}
 	
 	SDL_RenderPresent(mRenderer);
@@ -31,6 +40,11 @@ void dae::Renderer::Destroy()
 	{
 		SDL_DestroyRenderer(mRenderer);
 		mRenderer = nullptr;
+	}
+	for (size_t i = 0; i < m_RenderComponentes.size(); i++)
+	{
+		delete m_RenderComponentes.back();
+		m_RenderComponentes.pop_back();
 	}
 }
 
@@ -72,10 +86,11 @@ void dae::Renderer::RenderTexture(const Texture2D & texture,const SDL_Rect* dst)
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, dst);
 }
 
-dae::RenderComponent * dae::Renderer::GetComponent(TransformComponent * transform)
+dae::RenderComponent* dae::Renderer::GetComponent(TransformComponent * transform)
 {
-	m_RenderComponentes.push_back(RenderComponent(transform));
-	return &m_RenderComponentes.back();
+	m_RenderComponentes.push_back(new RenderComponent(transform));
+	m_RenderComponentes.back()->Connect(m_RenderComponentes.back()->Transform()->GetGameObject());
+	return m_RenderComponentes.back();
 }
 
 bool dae::Renderer::Sort(const RenderComponent & rc1, const RenderComponent & rc2)

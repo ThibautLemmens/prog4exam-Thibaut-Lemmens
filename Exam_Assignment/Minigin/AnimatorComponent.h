@@ -26,7 +26,8 @@ namespace dae
 		AnimatorComponent(int col, int row) :m_Cols{col}, m_Rows{row}{};
 		virtual ~AnimatorComponent()
 		{ 
-			delete m_currentClip;
+			m_Clips.erase(m_Clips.begin(),m_Clips.end());
+			//delete m_currentClip;
 		};
 
 		AnimatorComponent(const AnimatorComponent& other) = delete;
@@ -72,9 +73,9 @@ namespace dae
 			m_timer += Time::GetInstance().DeltaTime();
 			if (m_timer >= m_currentClip->TickRate)
 			{
-				m_timer -= m_currentClip->TickRate;
+				m_timer = 0;
 				m_CurrentFrame++;
-				m_CurrentFrame = (m_CurrentFrame == m_currentClip->EndFrame) ? m_currentClip->StartFrame : m_CurrentFrame;
+				m_CurrentFrame = (m_CurrentFrame == m_currentClip->EndFrame+1) ? m_currentClip->StartFrame : m_CurrentFrame;
 			}
 		}
 

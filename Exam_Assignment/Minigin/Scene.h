@@ -11,6 +11,7 @@ namespace dae
 		friend SceneManager::SceneManager();
 	public:
 		void Add(SceneObject* object);
+		Scene() = default;
 
 		void Update();
 
@@ -21,8 +22,6 @@ namespace dae
 		Scene& operator=(Scene&& other) = delete;
 
 	private:
-
-		explicit Scene(const std::string& name);
 
 		std::string mName{};
 		std::vector < SceneObject*> mObjects{};

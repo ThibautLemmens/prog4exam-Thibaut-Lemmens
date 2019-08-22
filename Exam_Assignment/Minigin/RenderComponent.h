@@ -19,7 +19,7 @@ namespace dae
 
 	public:
 		RenderComponent(TransformComponent* Transform) { m_Transform = Transform; };
-		virtual ~RenderComponent() {};
+		virtual ~RenderComponent() { delete m_Texture; };
 
 		virtual void Initialize() override {};
 		virtual void Update() override {};
@@ -29,14 +29,15 @@ namespace dae
 		RenderComponent& operator=(const RenderComponent& other) { return *this = RenderComponent(other); };
 		RenderComponent& operator=(RenderComponent&& other) noexcept { m_Animator = other.m_Animator; m_HasAnimator = other.m_HasAnimator; m_Transform = other.m_Transform; return *this; };
 
+		void RenderUpdate();
 		void Render() const;
 
 		void AttachAnimator(AnimatorComponent* animator) { if (m_HasAnimator) { Logger::LogInfo(L"Animator already attached -> reattaching Animator"); } m_HasAnimator = true; m_Animator = animator; };
 
 		//set Texture
-		void Texture(std::shared_ptr<dae::Texture2D> texture) { m_Texture = texture; };
+		void Texture(dae::Texture2D* texture) { m_Texture = texture; };
 		//get Texture
-		std::shared_ptr<dae::Texture2D> const Texture() const { return m_Texture; };
+		dae::Texture2D* const Texture() const { return m_Texture; };
 
 		void SetDimensions(Rect dest, Rect source) { m_Source = source; m_Dest = dest; m_HasSource = true; m_HasDest = true; };
 
@@ -48,6 +49,8 @@ namespace dae
 
 		SDL_Rect Convert(Rect info) const;
 		
+		TransformComponent* Transform() const { return m_Transform; };
+
 	private:
 		bool m_HasSource = false;
 		Rect m_Source;
@@ -55,7 +58,7 @@ namespace dae
 		bool m_HasDest = false;
 		Rect m_Dest;
 
-		std::shared_ptr<dae::Texture2D> m_Texture = nullptr;
+		dae::Texture2D* m_Texture = nullptr;
 
 		//Option to have animator
 		bool m_HasAnimator = false;

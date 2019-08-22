@@ -14,6 +14,7 @@ namespace dae
 
 	public:
 		void Init(SDL_Window* window);
+		void RenderUpdate();
 		void Render();
 		void Destroy();
 
@@ -30,7 +31,7 @@ namespace dae
 		bool Sort(const RenderComponent& rc1,const RenderComponent& rc2);
 
 	private:
-		std::vector<RenderComponent> m_RenderComponentes;
+		std::vector<RenderComponent*> m_RenderComponentes;
 
 	};
 }

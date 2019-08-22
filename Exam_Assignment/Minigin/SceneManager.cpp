@@ -20,6 +20,12 @@ dae::SceneManager::~SceneManager()
 
 dae::Scene* dae::SceneManager::CreateScene(const std::string& name)
 {
-	mScenes.push_back(new Scene(name));
+	mScenes.push_back(new Scene);
+	mScenes.back()->mName = name;
 	return mScenes.back();
+}
+
+void dae::SceneManager::AddScene(Scene * scene)
+{
+	mScenes.push_back(scene);
 }

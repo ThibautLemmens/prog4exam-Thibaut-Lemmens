@@ -2,7 +2,11 @@
 #include "BaseComponent.h"
 #include "GameObject.h"
 
-dae::TransformComponent * dae::BaseComponent::GetTransform() const
+dae::BaseComponent::~BaseComponent()
+{
+}
+
+dae::TransformComponent* dae::BaseComponent::GetTransform() const
 {
 #if _DEBUG
 	if (m_pGameObject == nullptr)

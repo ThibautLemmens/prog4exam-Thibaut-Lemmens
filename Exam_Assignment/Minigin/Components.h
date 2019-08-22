@@ -6,3 +6,4 @@
 #include "stateMachineComponent.h"
 #include "TextComponent.h"
 #include "TransformComponent.h"
+#include "GridComponent.h"

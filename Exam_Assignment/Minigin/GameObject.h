@@ -11,11 +11,11 @@ namespace dae
 	public:
 		void Update() override;
 
-		void SetTexture(const std::string& filename);
+		//void SetTexture(const std::string& filename);
 		void SetPosition(float x, float y, float z);
 		TransformComponent* Transform() { return &m_Transform; };
 
-		GameObject() = default;
+		GameObject() :m_Transform{} { m_Transform.Connect(this); };
 		virtual ~GameObject();
 		GameObject(const GameObject& other) = delete;
 		GameObject(GameObject&& other) = delete;
@@ -44,11 +44,12 @@ namespace dae
 		void AddComponent(BaseComponent* component)
 		{
 			m_Components.push_back(component);
+			component->Connect(this);
 		};
 
 	private:
 		TransformComponent m_Transform;
-		std::shared_ptr<Texture2D> mTexture;
+		//std::shared_ptr<Texture2D> mTexture;
 		std::vector<BaseComponent*> m_Components;
 	};
 }

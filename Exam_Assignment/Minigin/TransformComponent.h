@@ -10,7 +10,11 @@ namespace dae
 	public:
 		TransformComponent() { m_Position = { 0,0,0 }; m_Scale = { 1,1 }; };
 		TransformComponent(glm::vec3 Pos, glm::vec2 scale) { m_Position = Pos; m_Scale = scale; };
-		virtual ~TransformComponent() {};
+		virtual ~TransformComponent()
+		{
+			delete m_Parent;
+			m_Children.clear();
+		};
 
 		//get and set Pos
 		const glm::vec3 Position()const

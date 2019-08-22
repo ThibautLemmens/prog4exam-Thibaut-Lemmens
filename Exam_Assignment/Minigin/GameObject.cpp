@@ -10,13 +10,19 @@ dae::GameObject::~GameObject()
 	}
 }
 
-void dae::GameObject::Update(){}
-
-
-void dae::GameObject::SetTexture(const std::string& filename)
+void dae::GameObject::Update()
 {
-	mTexture = ResourceManager::GetInstance().LoadTexture(filename);
+	for (size_t i = 0; i < m_Components.size(); i++)
+	{
+		m_Components[i]->Update();
+	}
 }
+
+
+//void dae::GameObject::SetTexture(const std::string& filename)
+//{
+//	mTexture = ResourceManager::GetInstance().LoadTexture(filename);
+//}
 
 void dae::GameObject::SetPosition(float x, float y, float z)
 {

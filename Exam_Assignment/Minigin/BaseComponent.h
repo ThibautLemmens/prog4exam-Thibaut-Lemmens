@@ -13,7 +13,7 @@ namespace dae
 
 	public:
 		BaseComponent() :m_pGameObject{nullptr} {};
-		virtual ~BaseComponent() {};
+		virtual ~BaseComponent();
 		
 		GameObject* GetGameObject() { return m_pGameObject; };
 
@@ -24,10 +24,13 @@ namespace dae
 
 		TransformComponent* GetTransform() const;
 
-	protected:
-		virtual void Initialize() =0;
-		virtual void Update() =0;
+		virtual void Initialize() = 0;
+		virtual void Update() = 0;
 
+		void Connect(GameObject* gameObj) { m_pGameObject = gameObj; };
+
+	protected:
 		GameObject* m_pGameObject;
+
 	};
 }

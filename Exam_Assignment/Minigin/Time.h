@@ -16,6 +16,7 @@ namespace dae
 		{
 			auto currentTime = std::chrono::high_resolution_clock::now();
 			m_deltaTime = std::chrono::duration<float>(currentTime - StartTime).count();
+			StartTime = currentTime;
 			m_deltaTime *= m_TimeMultiplier;
 		};
 
@@ -29,7 +30,7 @@ namespace dae
 
 	private:
 		float m_deltaTime;
-		float m_TimeMultiplier;
+		float m_TimeMultiplier = 1;
 		std::chrono::steady_clock::time_point StartTime;
 	};
 }

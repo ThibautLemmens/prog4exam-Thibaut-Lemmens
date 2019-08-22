@@ -4,8 +4,6 @@
 
 unsigned int dae::Scene::idCounter = 0;
 
-dae::Scene::Scene(const std::string& name) : mName(name) {}
-
 dae::Scene::~Scene()
 {
 	for (auto gameObject : mObjects)
