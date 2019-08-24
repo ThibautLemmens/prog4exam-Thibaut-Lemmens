@@ -1,7 +1,7 @@
 #pragma once
 #include "SceneManager.h"
 #include "RenderComponent.h"
-
+#include "SceneRenderer.h"
 namespace dae
 {
 	class SceneObject;
@@ -14,6 +14,8 @@ namespace dae
 		Scene() = default;
 
 		void Update();
+		SceneRenderer* GetSceneRenderer() const { return mSceneRenderer; };
+
 
 		~Scene();
 		Scene(const Scene& other) = delete;
@@ -25,7 +27,7 @@ namespace dae
 
 		std::string mName{};
 		std::vector < SceneObject*> mObjects{};
-
+		SceneRenderer* mSceneRenderer;
 		static unsigned int idCounter; 
 	};
 

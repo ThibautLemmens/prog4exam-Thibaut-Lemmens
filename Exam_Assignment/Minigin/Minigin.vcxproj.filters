@@ -114,8 +114,8 @@
     <ClInclude Include="GridManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
-    <ClInclude Include="PengoScene.h">
-      <Filter>Scenes / prefabs</Filter>
+    <ClInclude Include="SceneRenderer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -176,8 +176,8 @@
     <ClCompile Include="GridManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
-    <ClCompile Include="PengoScene.cpp">
-      <Filter>Scenes / prefabs</Filter>
+    <ClCompile Include="SceneRenderer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

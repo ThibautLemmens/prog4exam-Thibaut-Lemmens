@@ -25,14 +25,6 @@ namespace dae
 		void RenderTexture(const Texture2D& texture, const SDL_Rect* dst) const;
 
 		SDL_Renderer* GetSDLRenderer() const { return mRenderer; };
-
-		RenderComponent* GetComponent(TransformComponent* transform);
-
-		bool Sort(const RenderComponent& rc1,const RenderComponent& rc2);
-
-	private:
-		std::vector<RenderComponent*> m_RenderComponentes;
-
 	};
 }
 

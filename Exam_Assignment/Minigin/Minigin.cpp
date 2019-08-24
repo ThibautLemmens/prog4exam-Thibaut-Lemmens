@@ -78,6 +78,7 @@ void dae::Minigin::Run()
 			doContinue = input.ProcessInput();
 
 			sceneManager.Update();
+			sceneManager.RenderUpdate();
 			renderer.Render();
 
 			float t{ 0.16f - time.DeltaTime() };
