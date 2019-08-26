@@ -1,16 +1,4 @@
-﻿  AnimatorComponent.cpp
-  BaseComponent.cpp
-  GameObject.cpp
-  InputComponent.cpp
-  Main.cpp
-  Minigin.cpp
-  RenderComponent.cpp
-  Renderer.cpp
-  ResourceManager.cpp
-  Scene.cpp
-  SceneManager.cpp
-  stateMachineComponent.cpp
-  Generating Code...
+﻿  GridManager.cpp
   Minigin.vcxproj -> E:\Minigin\Exam_Assignment\Win32\Debug\Minigin.lib
   E:\Minigin\Exam_Assignment\3rdParty\SDL2\lib\x86\SDL2.dll
   1 File(s) copied

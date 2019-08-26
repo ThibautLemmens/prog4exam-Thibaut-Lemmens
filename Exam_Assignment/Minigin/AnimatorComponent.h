@@ -50,6 +50,11 @@ namespace dae
 				newClip.EndFrame = EndFrame;
 				newClip.TickRate = TickRate;
 				m_Clips.insert(std::pair<std::string, Clip>(ClipnName, newClip));
+
+				if (m_Clips.size() == 1)
+				{
+					PlayClip(ClipnName);
+				}
 			}
 		};
 
@@ -64,6 +69,7 @@ namespace dae
 			{
 				m_currentClip = &i->second;
 				m_timer = 0;
+				m_CurrentFrame = m_currentClip->StartFrame;
 			}
 		};
 		virtual void Initialize() override {};

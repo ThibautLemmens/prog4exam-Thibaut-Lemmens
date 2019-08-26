@@ -75,10 +75,3 @@ void dae::Renderer::RenderTexture(const Texture2D & texture,const SDL_Rect* dst)
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, dst);
 }
 
-dae::RenderComponent* dae::Renderer::GetComponent(TransformComponent * transform)
-{
-	m_RenderComponentes.push_back(new RenderComponent(transform));
-	m_RenderComponentes.back()->Connect(m_RenderComponentes.back()->Transform()->GetGameObject());
-	return m_RenderComponentes.back();
-}
-

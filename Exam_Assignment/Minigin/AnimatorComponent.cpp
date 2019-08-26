@@ -11,8 +11,8 @@ SDL_Rect dae::AnimatorComponent::GetSource(const int& width, const int& Height)
 	srcWidth = width / m_Rows;
 
 	SDL_Rect src;
-	src.x = (m_CurrentFrame % m_Cols) * srcWidth;
-	src.y = (m_CurrentFrame / (m_Cols + 1)) * srcHeight;
+	src.x = (m_CurrentFrame % m_Rows) * srcWidth;
+	src.y = (m_CurrentFrame / (m_Rows)) * srcHeight;
 	src.w = srcWidth;
 	src.h = srcHeight;
 	return src;

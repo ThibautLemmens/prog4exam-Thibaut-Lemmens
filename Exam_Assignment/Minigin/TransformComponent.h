@@ -37,6 +37,10 @@ namespace dae
 		{
 			m_Position = glm::vec3(x, y, z);
 		};
+		void Position(float x, float y)
+		{
+			m_Position = glm::vec3(x, y, m_Position.z);
+		};
 
 		//move adds to current Positions
 		void Move(float x, float y, float z)

@@ -20,11 +20,17 @@ void dae::RenderComponent::Render() const
 
 		SDL_QueryTexture(m_Texture->GetSDLTexture(), nullptr, nullptr, &dest.w, &dest.h);
 
-		dest.w *= (int)m_Transform->Scale().x;
-		dest.h *= (int)m_Transform->Scale().y;
+		SDL_Rect ImageSize = dest;
+
+		dest.w /= m_Animator->Rows();
+		dest.h /= m_Animator->Cols();
+	
 
 		//source
-		SDL_Rect src(m_Animator->GetSource(dest.w, dest.h));
+		SDL_Rect src(m_Animator->GetSource(ImageSize.w, ImageSize.h));
+
+		src.w *= (int)m_Transform->Scale().x;
+		src.h *= (int)m_Transform->Scale().y;
 
 		Renderer::GetInstance().RenderTexture(*m_Texture, &dest, &src);
 

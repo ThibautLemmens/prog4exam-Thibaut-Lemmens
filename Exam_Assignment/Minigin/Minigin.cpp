@@ -14,6 +14,7 @@
 
 
 #include "../Pengo/Prefabs.h"
+#include "../Pengo/PengoScene.h"
 
 void dae::Minigin::Initialize()
 {
@@ -26,8 +27,8 @@ void dae::Minigin::Initialize()
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		640,
 		480,
+		640,
 		SDL_WINDOW_OPENGL
 	);
 	if (window == nullptr) 
@@ -43,8 +44,7 @@ void dae::Minigin::Initialize()
  */
 void dae::Minigin::LoadGame() const
 {
-	Prefabs x;
-	x.Init();
+	dae::SceneManager::GetInstance().AddScene(new PengoScene());
 }
 
 void dae::Minigin::Cleanup()

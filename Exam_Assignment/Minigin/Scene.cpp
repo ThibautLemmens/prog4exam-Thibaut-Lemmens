@@ -6,10 +6,12 @@ unsigned int dae::Scene::idCounter = 0;
 
 dae::Scene::~Scene()
 {
+	delete mSceneRenderer;
 	for (auto gameObject : mObjects)
 	{
 		delete gameObject;
 	}
+	
 }
 
 void dae::Scene::Add(SceneObject* object)

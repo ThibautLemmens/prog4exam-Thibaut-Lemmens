@@ -1,15 +1,17 @@
 ﻿  GridComponent.cpp
   GridManager.cpp
   Minigin.cpp
-  RenderComponent.cpp
-  Renderer.cpp
-e:\minigin\exam_assignment\minigin\renderer.cpp(78): error C2039: 'GetComponent': is not a member of 'dae::Renderer'
-  e:\minigin\exam_assignment\minigin\renderer.h(11): note: see declaration of 'dae::Renderer'
-e:\minigin\exam_assignment\minigin\renderer.cpp(78): error C2065: 'TransformComponent': undeclared identifier
-e:\minigin\exam_assignment\minigin\renderer.cpp(78): error C2065: 'transform': undeclared identifier
-e:\minigin\exam_assignment\minigin\renderer.cpp(79): error C2448: 'GetComponent': function-style initializer appears to be a function definition
-  ResourceManager.cpp
-  Scene.cpp
-  SceneManager.cpp
-  SceneRenderer.cpp
   Generating Code...
+  Minigin.vcxproj -> E:\Minigin\Exam_Assignment\x64\Debug\Minigin.lib
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2\lib\x64\SDL2.dll
+  1 File(s) copied
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libpng16-16.dll
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libtiff-5.dll
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libwebp-7.dll
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x64\SDL2_image.dll
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_image\lib\x64\zlib1.dll
+  6 File(s) copied
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_ttf\lib\x64\libfreetype-6.dll
+  E:\Minigin\Exam_Assignment\3rdParty\SDL2_ttf\lib\x64\SDL2_ttf.dll
+  2 File(s) copied

@@ -69,9 +69,6 @@
     <ClInclude Include="Logger.h">
       <Filter>Singleton</Filter>
     </ClInclude>
-    <ClInclude Include="Log.h">
-      <Filter>Singleton</Filter>
-    </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>Singleton</Filter>
     </ClInclude>
@@ -117,6 +114,9 @@
     <ClInclude Include="SceneRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatorComponent.cpp">
@@ -139,9 +139,6 @@
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="Log.cpp">
-      <Filter>Singleton</Filter>
     </ClCompile>
     <ClCompile Include="Texture2D.cpp">
       <Filter>ultility</Filter>
@@ -177,6 +174,9 @@
       <Filter>Managers</Filter>
     </ClCompile>
     <ClCompile Include="SceneRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

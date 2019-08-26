@@ -19,7 +19,7 @@ namespace dae
 
 	public:
 		RenderComponent(TransformComponent* Transform) { m_Transform = Transform; };
-		virtual ~RenderComponent() { delete m_Texture; };
+		virtual ~RenderComponent() {};
 
 		virtual void Initialize() override {};
 		virtual void Update() override {};

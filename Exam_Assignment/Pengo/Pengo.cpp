@@ -4,6 +4,7 @@
 
 //#include "MiniginPCH.h"
 //#pragma comment(lib,"xinput.lib")
+#include "pch.h"
 #include "Logger.h"
 #include "Prefabs.h"
 using namespace dae;

@@ -10,5 +10,11 @@
 #define PCH_H
 
 // TODO: add headers that you want to pre-compile here
+#include <stdio.h>
+#include <iostream> // std::cout
+#include <sstream> // stringstream
+#include <tchar.h>
+#include <memory> // smart pointers
+#include <vector>
 
 #endif //PCH_H

@@ -11,10 +11,10 @@ namespace dae
 		friend SceneManager::SceneManager();
 	public:
 		void Add(SceneObject* object);
-		Scene() = default;
+		Scene() { mSceneRenderer = new SceneRenderer(); };
 
 		void Update();
-		SceneRenderer* GetSceneRenderer() const { return mSceneRenderer; };
+		SceneRenderer* GetSceneRenderer() { return mSceneRenderer; };
 
 
 		~Scene();
@@ -22,12 +22,12 @@ namespace dae
 		Scene(Scene&& other) = delete;
 		Scene& operator=(const Scene& other) = delete;
 		Scene& operator=(Scene&& other) = delete;
-
+	protected:
+		SceneRenderer* mSceneRenderer;
+		std::vector < SceneObject*> mObjects{};
 	private:
 
 		std::string mName{};
-		std::vector < SceneObject*> mObjects{};
-		SceneRenderer* mSceneRenderer;
 		static unsigned int idCounter; 
 	};
 

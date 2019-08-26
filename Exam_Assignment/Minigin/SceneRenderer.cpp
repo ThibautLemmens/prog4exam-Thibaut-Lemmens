@@ -22,6 +22,10 @@ void dae::SceneRenderer::RenderUpdate()
 
 void dae::SceneRenderer::Render()
 {
+	for (RenderComponent* rc: m_RenderComponentes)
+	{
+		rc->Render();
+	}
 }
 
 dae::RenderComponent* dae::SceneRenderer::GetComponent(TransformComponent * transform)
