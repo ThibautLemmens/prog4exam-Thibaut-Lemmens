@@ -1,6 +1,0 @@
-﻿Minigin.lib(MiniginPCH.obj) : error LNK2005: "class dae::Cout2VisualStudioDebugOutput dae::c2v" (?c2v@dae@@3VCout2VisualStudioDebugOutput@1@A) already defined in DIGDUG.obj
-DIGDUG.obj : error LNK2019: unresolved external symbol "public: __thiscall dae::Cout2VisualStudioDebugOutput::Cout2VisualStudioDebugOutput(void)" (??0Cout2VisualStudioDebugOutput@dae@@QAE@XZ) referenced in function "void __cdecl dae::`dynamic initializer for 'c2v''(void)" (??__Ec2v@dae@@YAXXZ)
-Minigin.lib(MiniginPCH.obj) : error LNK2001: unresolved external symbol "public: __thiscall dae::Cout2VisualStudioDebugOutput::Cout2VisualStudioDebugOutput(void)" (??0Cout2VisualStudioDebugOutput@dae@@QAE@XZ)
-DIGDUG.obj : error LNK2019: unresolved external symbol "public: __thiscall dae::Cout2VisualStudioDebugOutput::~Cout2VisualStudioDebugOutput(void)" (??1Cout2VisualStudioDebugOutput@dae@@QAE@XZ) referenced in function "void __cdecl dae::`dynamic atexit destructor for 'c2v''(void)" (??__Fc2v@dae@@YAXXZ)
-Minigin.lib(MiniginPCH.obj) : error LNK2001: unresolved external symbol "public: __thiscall dae::Cout2VisualStudioDebugOutput::~Cout2VisualStudioDebugOutput(void)" (??1Cout2VisualStudioDebugOutput@dae@@QAE@XZ)
-E:\Minigin\Exam_Assignment\Win32\Debug\DIGDUG.exe : fatal error LNK1120: 2 unresolved externals

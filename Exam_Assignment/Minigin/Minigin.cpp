@@ -14,7 +14,7 @@
 
 
 #include "../Pengo/Prefabs.h"
-#include "../Pengo/PengoScene.h"
+#include "../Pengo/MenuScene.h"
 
 void dae::Minigin::Initialize()
 {
@@ -35,8 +35,9 @@ void dae::Minigin::Initialize()
 	{
 		throw std::runtime_error(std::string("SDL_CreateWindow Error: ") + SDL_GetError());
 	}
-
 	Renderer::GetInstance().Init(window);
+
+	InputManager::GetInstance().Init();
 }
 
 /**
@@ -44,7 +45,7 @@ void dae::Minigin::Initialize()
  */
 void dae::Minigin::LoadGame() const
 {
-	dae::SceneManager::GetInstance().AddScene(new PengoScene());
+	dae::SceneManager::GetInstance().AddScene(new MenuScene());
 }
 
 void dae::Minigin::Cleanup()

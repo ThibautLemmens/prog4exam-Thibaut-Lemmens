@@ -22,6 +22,9 @@ void dae::GridComponent::Update()
 		if (Time > 1)
 		{
 			Transform->Position(DestinationVector.x, DestinationVector.y);
+			Move = false;
+			GridPos = Destination;
+			Time = 0;
 		}
 		else
 		{
@@ -39,6 +42,14 @@ void dae::GridComponent::MoveTo(int pos)
 
 	Transform->Position((float)x, (float)y);
 	GridPos = pos;
+}
+
+glm::vec2 dae::GridComponent::GridLocation(int loc)
+{
+	int x = (loc % Grid->GetRow()) * Grid->GetSize();
+	int y = (loc / (Grid->GetRow())) * Grid->GetSize();
+
+	return glm::vec2(x, y);
 }
 
 int dae::GridComponent::GetPos() const

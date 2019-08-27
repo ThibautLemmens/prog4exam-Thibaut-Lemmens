@@ -14,6 +14,7 @@ namespace dae
 		void Update();
 		void RenderUpdate();
 		void Render();
+		void Empty();
 
 		Scene* PresistendScene() { return mScenes[0]; };
 

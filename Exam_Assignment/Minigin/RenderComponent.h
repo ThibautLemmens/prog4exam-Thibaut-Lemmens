@@ -2,7 +2,12 @@
 #include "BaseComponent.h"
 #include "AnimatorComponent.h"
 #include "TransformComponent.h"
-#include "glm\common.hpp"
+#pragma warning(push)
+#pragma warning (disable:4201)
+#include <glm/vec3.hpp>
+#include "glm/vec2.hpp"
+#include "glm/vec4.hpp"
+#pragma warning(pop)
 #include "Texture2D.h"
 
 struct SDL_Rect;

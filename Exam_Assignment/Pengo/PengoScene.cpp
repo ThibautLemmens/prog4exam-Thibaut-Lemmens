@@ -3,6 +3,10 @@
 #include "Components.h"
 #include "GameObject.h"
 #include "ResourceManager.h"
+#include "InputManager.h"
+#include "Commands.h"
+#include "States.h"
+#include "InputManager.h"
 
 namespace dae
 {
@@ -16,21 +20,75 @@ namespace dae
 		GameObject* Player = new GameObject();
 		dae::AnimatorComponent* PlayerAnimator = new dae::AnimatorComponent(5, 5);
 		PlayerAnimator->AddClip("RunDown", 0, 1, 0.24f);
-		PlayerAnimator->AddClip("RunUp", 6, 7, 0.24f);
-		PlayerAnimator->AddClip("RunSide", 11, 12, 0.24f);
-		PlayerAnimator->AddClip("PushDown", 8, 8, 0.24f);
-		PlayerAnimator->AddClip("PushUp", 21, 21, 0.24f);
-		PlayerAnimator->AddClip("PushSide", 13, 14, 0.24f);
+		PlayerAnimator->AddClip("RunUp", 5, 6, 0.24f);
+		PlayerAnimator->AddClip("RunRight", 10, 11, 0.24f);
+		PlayerAnimator->AddClip("Runleft", 23, 24, 0.24f);
+		PlayerAnimator->AddClip("PushDown", 21, 22, 0.24f);
+		PlayerAnimator->AddClip("PushUp", 19, 20, 0.24f);
+		PlayerAnimator->AddClip("PushLeft", 12, 13, 0.24f);
+		PlayerAnimator->AddClip("PushRight", 15, 16, 0.24f);
 		PlayerAnimator->AddClip("Die", 4, 5, 0.24f);
 		PlayerAnimator->PlayClip("RunDown");
 		Player->AddComponent(PlayerAnimator);
-
 		
-		GridComponent* Gridcomp = new GridComponent();
-		Gridcomp->AddTransform(Player->Transform());
-		m_Grid->Connect(Gridcomp, 126);
-		Player->AddComponent(Gridcomp);
+		GridComponent* Gridcompon = new GridComponent();
+		Gridcompon->AddTransform(Player->Transform());
+		Gridcompon->Tag("Player");
+		m_Grid->Connect(Gridcompon, 126);
+		Player->AddComponent(Gridcompon);
 
+		InputComponent* inputcomp = new InputComponent(0, &InputManager::GetInstance());
+
+		Input* moveLeft = new Input;
+		moveLeft->button = ControllerButton::DpadLeft;
+		moveLeft->keyboard = 'A';
+		MoveCommand* leftcom = new MoveCommand;
+		leftcom->pengoDir = left;
+		leftcom->gridcomp = Gridcompon;
+		leftcom->animator = PlayerAnimator;
+		moveLeft->pCommand = leftcom;
+		inputcomp->AddInput(moveLeft);
+
+		Input* moveRight = new Input;
+		moveRight->button = ControllerButton::DpadRight;
+		moveRight->keyboard = 'D';
+		MoveCommand* rightcom = new MoveCommand;
+		rightcom->pengoDir = right;
+		rightcom->gridcomp = Gridcompon;
+		rightcom->animator = PlayerAnimator;
+		moveRight->pCommand = rightcom;
+		inputcomp->AddInput(moveRight);
+
+		Input* moveUp = new Input;
+		moveUp->button = ControllerButton::DpadUp;
+		moveUp->keyboard = 'W';
+		MoveCommand* upcom = new MoveCommand;
+		upcom->pengoDir = up;
+		upcom->gridcomp = Gridcompon;
+		upcom->animator = PlayerAnimator;
+		moveUp->pCommand = upcom;
+		inputcomp->AddInput(moveUp);
+
+		Input* moveDown = new Input;
+		moveDown->button = ControllerButton::DpadDown;
+		moveDown->keyboard = 'S';
+		MoveCommand* downcom = new MoveCommand;
+		downcom->pengoDir = down;
+		downcom->gridcomp = Gridcompon;
+		downcom->animator = PlayerAnimator;
+		moveDown->pCommand = downcom;
+		inputcomp->AddInput(moveDown);
+
+		Input* interact = new Input;
+		interact->button = ControllerButton::ButtonA;
+		interact->keyboard = ' ';
+		InteractCommand* interactcom = new InteractCommand;
+		interactcom->gridcomp = Gridcompon;
+		interactcom->animator = PlayerAnimator;
+		interact->pCommand = interactcom;
+		inputcomp->AddInput(interact);
+
+		Player->AddComponent(inputcomp);
 
 		dae::RenderComponent* PlayerRender = GetSceneRenderer()->GetComponent(Player->Transform());
 		PlayerRender->AttachAnimator(PlayerAnimator);
@@ -39,9 +97,7 @@ namespace dae
 		PlayerRender->Texture(dae::ResourceManager::GetInstance().GetTexture("Pengo"));
 		Add(Player);
 		
-
 		dae::ResourceManager::GetInstance().StoreTexture("Blocks", dae::ResourceManager::GetInstance().LoadTexture("Blocks.jpg"));
-
 		dae::ResourceManager::GetInstance().StoreTexture("SnowBees", dae::ResourceManager::GetInstance().LoadTexture("SnowBees.jpg"));
 		dae::ResourceManager::GetInstance().StoreTexture("Wall", dae::ResourceManager::GetInstance().LoadTexture("Wall.jpg"));
 
@@ -61,6 +117,7 @@ namespace dae
 			BlockRender->AttachAnimator(BlockAnim);
 			/*block->AddComponent(BlockRender);*/
 			GridComponent* Gridcomp = new GridComponent();
+			Gridcomp->Tag("Block");
 			bool add = true;
 			Gridcomp->AddTransform(block->Transform());
 			while (add)
@@ -69,6 +126,20 @@ namespace dae
 				add = !add;
 			}
 			block->AddComponent(Gridcomp);
+			BlockNormal* normal = new BlockNormal;
+			normal->gridcomp = Gridcomp;
+			BlockDestroy* Destroy = new BlockDestroy;
+			Destroy->gridcomp = Gridcomp;
+			Destroy->anim = BlockAnim;
+			BlockGlide* Glide = new BlockGlide;
+			Glide->gridcomp = Gridcomp;
+
+			stateMachineComponent* statemach = new stateMachineComponent(normal, "Normal");
+			statemach->AddState(Destroy, "Destroy");
+			statemach->AddState(Glide, "Glide");
+			statemach->SetState("Normal");
+			block->AddComponent(statemach);
+
 			Add(block);
 		}
 		for (size_t i = 0; i < 3; i++)
@@ -84,6 +155,7 @@ namespace dae
 			BlockRender->AttachAnimator(DiaBlockAnim);
 			/*block->AddComponent(BlockRender);*/
 			GridComponent* Gridcomp = new GridComponent();
+			Gridcomp->Tag("DBlock");
 			bool add = true;
 			Gridcomp->AddTransform(block->Transform());
 			while (add)
@@ -102,8 +174,8 @@ namespace dae
 			EnemyAnim->AddClip("Spawn", 0, 5, 0.24f);
 			EnemyAnim->AddClip("Stun", 6, 6, 0.12f);
 			EnemyAnim->AddClip("down", 7, 8, 0.12f);
-			EnemyAnim->AddClip("Left", 9, 10, 0.12f);
-			EnemyAnim->AddClip("right", 9, 10, 0.12f);
+			EnemyAnim->AddClip("left", 9, 10, 0.12f);
+			EnemyAnim->AddClip("right", 28, 29, 0.12f);
 			EnemyAnim->AddClip("up", 11, 12, 0.12f);
 			EnemyAnim->AddClip("downAttack", 13, 14, 0.12f);
 			EnemyAnim->AddClip("leftAttack", 15, 16, 0.12f);
@@ -113,13 +185,14 @@ namespace dae
 			EnemyAnim->AddClip("flatleft", 21, 22, 0.12f);
 			EnemyAnim->AddClip("flatRight", 21, 22, 0.12f);
 			EnemyAnim->AddClip("flatDown", 23, 24, 0.12f);
-			EnemyAnim->PlayClip("Left");
+			EnemyAnim->PlayClip("Spawn");
 			Enemy->AddComponent(EnemyAnim);
 			dae::RenderComponent* BlockRender = GetSceneRenderer()->GetComponent(Enemy->Transform());
 			BlockRender->Texture(dae::ResourceManager::GetInstance().GetTexture("SnowBees"));
 			BlockRender->AttachAnimator(EnemyAnim);
 			/*block->AddComponent(BlockRender);*/
 			GridComponent* Gridcomp = new GridComponent();
+			Gridcomp->Tag("Enemy");
 			Gridcomp->SetTrigger(true);
 			bool add = true;
 			Gridcomp->AddTransform(Enemy->Transform());
@@ -129,6 +202,18 @@ namespace dae
 				add = !add;
 			}
 			Enemy->AddComponent(Gridcomp);
+
+			EnemySpawn* spawn = new EnemySpawn;
+			spawn->anim = EnemyAnim;
+			spawn->gridcomp = Gridcomp;
+			EnemyWander* wander = new EnemyWander;
+			wander->anim = EnemyAnim;
+			wander->gridcomp = Gridcomp;
+			stateMachineComponent* statemach = new stateMachineComponent(spawn, "Spawn");
+			statemach->AddState(wander, "Wander");
+			statemach->SetState("Spawn");
+			Enemy->AddComponent(statemach);
+
 			Add(Enemy);
 		}
 
@@ -140,7 +225,7 @@ namespace dae
 	{
 		delete m_Grid;
 		delete mSceneRenderer;
-		/*for (auto gameObject : mObjects)
+	/*	for (auto gameObject : deleteVec)
 		{
 			delete gameObject;
 		}*/
@@ -164,7 +249,7 @@ namespace dae
 			BlockRender->AttachAnimator(WallAnimUp);
 			BlockRender->Offset({ i * 32,0 });
 			GridComponent* Gridcomp = new GridComponent();
-			bool add = true;
+			Gridcomp->Tag("Wall");
 			TransformComponent* transform = new TransformComponent();
 			Upwall->AddComponent(transform);
 			Gridcomp->AddTransform(transform);
@@ -187,7 +272,7 @@ namespace dae
 			BlockRender->AttachAnimator(WallAnimDown);
 			//BlockRender->Offset({ i * -32,0 });
 			GridComponent* Gridcomp = new GridComponent();
-			bool add = true;
+			Gridcomp->Tag("Wall");
 			Downwall->AddComponent(transform);
 			Gridcomp->AddTransform(transform);
 			m_Grid->Connect(Gridcomp, 17*13-(i+1));
@@ -209,7 +294,7 @@ namespace dae
 			BlockRender->AttachAnimator(WallAnimLeft);
 			//BlockRender->Offset({ i * -32,0 });
 			GridComponent* Gridcomp = new GridComponent();
-			bool add = true;
+			Gridcomp->Tag("Wall");
 			Leftwall->AddComponent(transform);
 			Gridcomp->AddTransform(transform);
 			m_Grid->Connect(Gridcomp, 13 * (i+1));
@@ -232,7 +317,7 @@ namespace dae
 			BlockRender->AttachAnimator(WallAnimRight);
 			//BlockRender->Offset({ i * -32,0 });
 			GridComponent* Gridcomp = new GridComponent();
-			bool add = true;
+			Gridcomp->Tag("Wall");
 			RightWall->AddComponent(transform);
 			Gridcomp->AddTransform(transform);
 			m_Grid->Connect(Gridcomp, 13 * (i + 1) + 12);
@@ -241,3 +326,4 @@ namespace dae
 		Add(RightWall);
 	}
 }
+

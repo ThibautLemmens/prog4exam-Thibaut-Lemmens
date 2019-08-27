@@ -1,8 +1,11 @@
 #pragma once
 #include "Scene.h"
 #include "GridManager.h"
+
+
 namespace dae
 {
+	class State;
 	class PengoScene : public Scene
 	{
 	public:

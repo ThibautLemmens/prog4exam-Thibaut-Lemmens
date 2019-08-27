@@ -23,7 +23,7 @@ void dae::Scene::Update()
 {
 	for(auto gameObject : mObjects)
 	{
-		gameObject->Update();
+		if(gameObject != nullptr) gameObject->Update();
 	}
 }
 

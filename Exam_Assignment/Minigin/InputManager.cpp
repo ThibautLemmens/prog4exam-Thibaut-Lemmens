@@ -3,6 +3,11 @@
 #include <SDL.h>
 
 
+dae::InputManager::~InputManager()
+{
+	delete m_KeyboardState;
+}
+
 void dae::InputManager::Init()
 {
 	m_KeyboardState = new BYTE[256];
@@ -18,7 +23,7 @@ void dae::InputManager::Init()
 
 bool dae::InputManager::ProcessInput()
 {
-	ZeroMemory(&currentState, sizeof(XINPUT_STATE));
+	//ZeroMemory(&currentState, sizeof(XINPUT_STATE));
 	for (unsigned int i{ 0 }; i < currentState.size(); ++i)
 	{
 		XInputGetState(i, &currentState[i]);
@@ -52,7 +57,7 @@ bool dae::InputManager::IsPressed(ControllerButton button, int player) const
 
 bool dae::InputManager::IsPressed(int key, int player) const
 {
-	if ((m_KeyboardState[key] & 0xF0) != 0) return true;
+	if(GetAsyncKeyState(key)) return true;
 	return false;
 }
 

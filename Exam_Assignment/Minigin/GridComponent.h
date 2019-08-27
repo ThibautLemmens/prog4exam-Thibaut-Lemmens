@@ -18,9 +18,15 @@ namespace dae
 		void TriggerCollide() {};
 		void MoveTo(int pos);
 
+		glm::vec2 GridLocation(int loc);
+
 		int GetPos() const;
 		int GetDest() const;
 
+		//do not use, or use carefully
+		void SetPos(glm::vec2 pos) { startVector = pos; };
+		void SetDest(glm::vec2 pos) { DestinationVector = pos; startVector = GridLocation(GridPos); };
+		void SetDestLocation(int loc) { Destination= loc; };
 		bool IsTrigger() const;
 		void SetTrigger(bool trig) { trigger = trig; };
 		bool IsMoving() const;
@@ -34,6 +40,8 @@ namespace dae
 
 		void AddManager(GridManager* grid) { Grid = grid; };
 		void AddTransform(TransformComponent* transform) { Transform = transform; };
+
+		GridManager* GetManager() const {return Grid;};
 
 	protected:
 		bool Move = false;

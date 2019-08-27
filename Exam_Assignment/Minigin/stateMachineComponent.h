@@ -9,11 +9,11 @@ namespace dae
 	class stateMachineComponent final : public BaseComponent
 	{
 	public:
-		stateMachineComponent(State* Entry);
-		~stateMachineComponent() = default;
+		stateMachineComponent(State* Entry, std::string name);
+		virtual ~stateMachineComponent();
 
 		//Add state to StateMachine
-		void AddState(State* state);
+		void AddState(State* state, std::string name);
 
 		//Attach animator for animation on entry of state
 		void AttachAnimator(AnimatorComponent& animator) { if (m_HasAnimator) { Logger::LogInfo(L"Animator already attached -> reattaching Animator"); } m_HasAnimator = true; m_Animator = &animator; };
@@ -33,13 +33,14 @@ namespace dae
 
 		//get string or state*
 		State* GetActiveState();
-		const std::string GetActiveState() const;
+		const std::string GetActiveStateName() const;
 
 		//set state from the ones the statemchine holds
 		void SetState(std::string name);
 		void SetState(State* state);
 
 	private:
+		std::string m_CurrentName;
 		State* m_CurrentState;
 		std::unordered_map<std::string, State*> m_States;
 
@@ -51,7 +52,8 @@ namespace dae
 	class State
 	{
 	public:
-		State(std::string name) { Name = name; };
+		State() = default;
+		virtual ~State() {};
 		stateMachineComponent* StateMachine;
 		std::string Name;
 		std::string AnimatorClipName;
@@ -61,7 +63,6 @@ namespace dae
 		virtual void Update() {};
 		//Advised to not call, only set
 		virtual void End() {};
-
 	private:
 		//add privates if you need them
 	};

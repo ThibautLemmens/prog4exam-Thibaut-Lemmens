@@ -11,6 +11,7 @@ void dae::RenderComponent::RenderUpdate()
 void dae::RenderComponent::Render() const
 {
 	if (m_Texture == nullptr) { return; }
+	if (m_Transform == nullptr) { return; }
 	if (m_HasAnimator)
 	{
 		//dest

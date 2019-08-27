@@ -28,6 +28,8 @@ namespace dae
 	class InputManager final : public Singleton<InputManager>
 	{
 	public:
+
+		virtual ~InputManager() override;
 		void Init();
 		bool ProcessInput();
 		bool IsPressed(ControllerButton button,int player) const;

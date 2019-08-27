@@ -68,8 +68,7 @@ namespace dae
 			else
 			{
 				m_currentClip = &i->second;
-				m_timer = 0;
-				m_CurrentFrame = m_currentClip->StartFrame;
+				m_CurrentFrame = (m_CurrentFrame >= m_currentClip->EndFrame + 1 || m_CurrentFrame <= m_currentClip->StartFrame - 1) ? m_currentClip->StartFrame : m_CurrentFrame;
 			}
 		};
 		virtual void Initialize() override {};

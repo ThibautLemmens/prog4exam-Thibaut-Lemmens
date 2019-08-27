@@ -26,6 +26,19 @@ void dae::SceneManager::Render()
 	}
 }
 
+void dae::SceneManager::Empty()
+{
+	for (size_t i = 0; i < mScenes.size(); i++)
+	{
+		if (i != 0)
+		{
+			std::swap(mScenes.back(), mScenes[i]);
+			delete mScenes.back();
+			mScenes.pop_back();
+		}
+	}
+}
+
 dae::SceneManager::~SceneManager()
 {
 	for (Scene* scene : mScenes)

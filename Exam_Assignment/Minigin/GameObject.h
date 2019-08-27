@@ -23,11 +23,11 @@ namespace dae
 		GameObject& operator=(GameObject&& other) = delete;
 
 
-		template <class T>
+		/*template <class T>
 		bool GetComponent()
 		{
 			return GetComponent<T>() != nullptr;
-		}
+		}*/
 
 		template <class T>
 		T* GetComponent()
