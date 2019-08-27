@@ -34,10 +34,11 @@ void dae::GridComponent::Update()
 
 void dae::GridComponent::MoveTo(int pos)
 {
-	int x = (pos % Grid->GetCol()) * Grid->GetSize();
-	int y = (pos / (Grid->GetCol() + 1)) * Grid->GetSize();
+	int x = (pos % Grid->GetRow()) * Grid->GetSize();
+	int y = (pos / (Grid->GetRow())) * Grid->GetSize();
 
 	Transform->Position((float)x, (float)y);
+	GridPos = pos;
 }
 
 int dae::GridComponent::GetPos() const

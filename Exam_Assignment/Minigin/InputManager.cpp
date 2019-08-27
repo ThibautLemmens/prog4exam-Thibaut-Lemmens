@@ -3,10 +3,31 @@
 #include <SDL.h>
 
 
+void dae::InputManager::Init()
+{
+	m_KeyboardState = new BYTE[256];
+	GetKeyboardState(m_KeyboardState);
+
+
+	for (int i{ 0 }; i < MaxPlayers; ++i)
+	{
+		XINPUT_STATE state;
+		currentState.push_back(state);
+	}
+}
+
 bool dae::InputManager::ProcessInput()
 {
 	ZeroMemory(&currentState, sizeof(XINPUT_STATE));
-	XInputGetState(0, &currentState);
+	for (unsigned int i{ 0 }; i < currentState.size(); ++i)
+	{
+		XInputGetState(i, &currentState[i]);
+
+	}
+
+	GetKeyboardState(m_KeyboardState);
+
+	
 
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
@@ -24,9 +45,15 @@ bool dae::InputManager::ProcessInput()
 	return true;
 }
 
-bool dae::InputManager::IsPressed(ControllerButton button) const
+bool dae::InputManager::IsPressed(ControllerButton button, int player) const
 {
-	return (currentState.Gamepad.wButtons & static_cast<WORD>(button)) != 0;
+	return (currentState[player].Gamepad.wButtons & static_cast<WORD>(button)) != 0;
+}
+
+bool dae::InputManager::IsPressed(int key, int player) const
+{
+	if ((m_KeyboardState[key] & 0xF0) != 0) return true;
+	return false;
 }
 
 dae::Command* dae::InputManager::GetCommand(std::string name)

@@ -4,16 +4,26 @@
 
 namespace dae
 {
-	
+	struct Input
+	{
+		ControllerButton button;
+		int keyboard;
+		Command* pCommand;
+	};
+
 	class InputComponent final : public BaseComponent
 	{
 	public:
-		InputComponent();
+		virtual void Update() override;
+		virtual void Initialize() override {};
+
+
+		InputComponent(int player);
 		~InputComponent();
-		//get Command from InputManager
-		void AddCommand(std::string command);
-		void RemoveCommand(std::string command);
+		void AddInput(Input* input);
+		void AddInput(ControllerButton button, int keyboard, Command* pCommand);
 	private:
-		std::unordered_map<std::string,Command*> m_pCommands;
+		int m_Player;
+		std::vector<Input*> m_Inputs;
 	};
 }

@@ -10,6 +10,7 @@ namespace dae
 		~PengoScene();
 	private:
 		GridManager* m_Grid;
+		void MakeWall();
 	};
 
 }

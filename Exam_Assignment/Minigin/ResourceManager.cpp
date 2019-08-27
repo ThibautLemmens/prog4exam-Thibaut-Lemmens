@@ -10,8 +10,22 @@
 
 dae::ResourceManager::~ResourceManager()
 {
-	m_Textures.erase(m_Textures.begin(), m_Textures.end());
-	m_Fonts.erase(m_Fonts.begin(), m_Fonts.end());
+	std::unordered_map<std::string, Texture2D*>::iterator it = m_Textures.begin();
+
+	// Iterate over the map using iterator
+	while (it != m_Textures.end())
+	{
+		delete it->second;
+		it++;
+	}
+
+	std::unordered_map<std::string, Font*>::iterator it1 = m_Fonts.begin();
+	// Iterate over the map using iterator
+	while (it1 != m_Fonts.end())
+	{
+		delete it1->second;
+		it1++;
+	}
 }
 
 void dae::ResourceManager::Init(std::string&& dataPath)

@@ -11,8 +11,7 @@ dae::SceneRenderer::~SceneRenderer()
 {
 	for (size_t i = 0; i < m_RenderComponentes.size(); i++)
 	{
-		delete m_RenderComponentes.back();
-		m_RenderComponentes.pop_back();
+		delete m_RenderComponentes[i];
 	}
 }
 

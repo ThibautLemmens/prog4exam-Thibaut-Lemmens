@@ -1,7 +1,4 @@
-﻿  GridComponent.cpp
-  GridManager.cpp
-  Minigin.cpp
-  Generating Code...
+﻿  GridManager.cpp
   Minigin.vcxproj -> E:\Minigin\Exam_Assignment\x64\Debug\Minigin.lib
   E:\Minigin\Exam_Assignment\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied

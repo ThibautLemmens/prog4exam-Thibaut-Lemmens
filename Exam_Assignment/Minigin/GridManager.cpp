@@ -11,7 +11,6 @@ dae::GridManager::GridManager(int col, int row, int cellsize)
 
 dae::GridManager::~GridManager()
 {
-	m_Grid.erase(m_Grid.begin(),m_Grid.end());
 }
 
 std::vector<dae::GridComponent*>  dae::GridManager::GetLocation(int location)

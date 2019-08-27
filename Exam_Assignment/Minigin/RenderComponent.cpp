@@ -15,8 +15,8 @@ void dae::RenderComponent::Render() const
 	{
 		//dest
 		SDL_Rect dest;
-		dest.x = static_cast<int>(m_Transform->Position().x);
-		dest.y = static_cast<int>(m_Transform->Position().y);
+		dest.x = static_cast<int>(m_Transform->Position().x + m_Offset.x);
+		dest.y = static_cast<int>(m_Transform->Position().y + m_Offset.y);
 
 		SDL_QueryTexture(m_Texture->GetSDLTexture(), nullptr, nullptr, &dest.w, &dest.h);
 

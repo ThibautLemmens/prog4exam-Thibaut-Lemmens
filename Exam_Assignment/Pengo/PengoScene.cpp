@@ -9,7 +9,7 @@ namespace dae
 
 	dae::PengoScene::PengoScene() : m_Grid{ nullptr }
 	{
-		m_Grid = new GridManager(15, 17, 32);
+		m_Grid = new GridManager(17, 13, 32);
 		Add(m_Grid);
 
 
@@ -24,7 +24,14 @@ namespace dae
 		PlayerAnimator->AddClip("Die", 4, 5, 0.24f);
 		PlayerAnimator->PlayClip("RunDown");
 		Player->AddComponent(PlayerAnimator);
+
 		
+		GridComponent* Gridcomp = new GridComponent();
+		Gridcomp->AddTransform(Player->Transform());
+		m_Grid->Connect(Gridcomp, 126);
+		Player->AddComponent(Gridcomp);
+
+
 		dae::RenderComponent* PlayerRender = GetSceneRenderer()->GetComponent(Player->Transform());
 		PlayerRender->AttachAnimator(PlayerAnimator);
 
@@ -36,10 +43,12 @@ namespace dae
 		dae::ResourceManager::GetInstance().StoreTexture("Blocks", dae::ResourceManager::GetInstance().LoadTexture("Blocks.jpg"));
 
 		dae::ResourceManager::GetInstance().StoreTexture("SnowBees", dae::ResourceManager::GetInstance().LoadTexture("SnowBees.jpg"));
+		dae::ResourceManager::GetInstance().StoreTexture("Wall", dae::ResourceManager::GetInstance().LoadTexture("Wall.jpg"));
 
+		MakeWall();
 
 		//std::vector<GameObject*>Blocks;
-		for (size_t i = 0; i < 100; i++)
+		for (size_t i = 0; i < 70; i++)
 		{
 			GameObject* block = new GameObject();
 			dae::AnimatorComponent* BlockAnim = new dae::AnimatorComponent(3, 5);
@@ -56,7 +65,7 @@ namespace dae
 			Gridcomp->AddTransform(block->Transform());
 			while (add)
 			{
-				add = m_Grid->Connect(Gridcomp, rand() % (15 * 17));
+				add = m_Grid->Connect(Gridcomp, rand() % (13 * 17));
 				add = !add;
 			}
 			block->AddComponent(Gridcomp);
@@ -79,7 +88,7 @@ namespace dae
 			Gridcomp->AddTransform(block->Transform());
 			while (add)
 			{
-				add = m_Grid->Connect(Gridcomp, rand() % (15 * 17));
+				add = m_Grid->Connect(Gridcomp, rand() % (13 * 17));
 				add = !add;
 			}
 			block->AddComponent(Gridcomp);
@@ -116,7 +125,7 @@ namespace dae
 			Gridcomp->AddTransform(Enemy->Transform());
 			while (add)
 			{
-				add = m_Grid->Connect(Gridcomp, rand() % (15 * 17));
+				add = m_Grid->Connect(Gridcomp, rand() % (13 * 17));
 				add = !add;
 			}
 			Enemy->AddComponent(Gridcomp);
@@ -139,5 +148,96 @@ namespace dae
 		{
 			delete mObjects[i];
 		}
+	}
+	void PengoScene::MakeWall()
+	{
+		GameObject* Upwall = new GameObject();
+		dae::AnimatorComponent* WallAnimUp = new dae::AnimatorComponent(1, 6);
+		WallAnimUp->AddClip("normal", 0, 1, 1.28f);
+		WallAnimUp->AddClip("wave", 2, 5, 0.12f);
+		WallAnimUp->PlayClip("normal");
+		Upwall->AddComponent(WallAnimUp);
+		for (int i = 0; i < 13; i++)
+		{
+			dae::RenderComponent* BlockRender = GetSceneRenderer()->GetComponent(Upwall->Transform());
+			BlockRender->Texture(dae::ResourceManager::GetInstance().GetTexture("Wall"));
+			BlockRender->AttachAnimator(WallAnimUp);
+			BlockRender->Offset({ i * 32,0 });
+			GridComponent* Gridcomp = new GridComponent();
+			bool add = true;
+			TransformComponent* transform = new TransformComponent();
+			Upwall->AddComponent(transform);
+			Gridcomp->AddTransform(transform);
+			m_Grid->Connect(Gridcomp, i);
+			Upwall->AddComponent(Gridcomp);
+		}
+		Add(Upwall);
+
+		GameObject* Downwall = new GameObject();
+		dae::AnimatorComponent* WallAnimDown = new dae::AnimatorComponent(1, 6);
+		WallAnimDown->AddClip("normal", 0, 1, 1.28f);
+		WallAnimDown->AddClip("wave", 2, 5, 0.12f);
+		WallAnimDown->PlayClip("normal");
+		Downwall->AddComponent(WallAnimDown);
+		for (int i = 0; i < 13; i++)
+		{
+			TransformComponent* transform = new TransformComponent();
+			dae::RenderComponent* BlockRender = GetSceneRenderer()->GetComponent(transform);
+			BlockRender->Texture(dae::ResourceManager::GetInstance().GetTexture("Wall"));
+			BlockRender->AttachAnimator(WallAnimDown);
+			//BlockRender->Offset({ i * -32,0 });
+			GridComponent* Gridcomp = new GridComponent();
+			bool add = true;
+			Downwall->AddComponent(transform);
+			Gridcomp->AddTransform(transform);
+			m_Grid->Connect(Gridcomp, 17*13-(i+1));
+			Downwall->AddComponent(Gridcomp);
+		}
+		Add(Downwall);
+
+		GameObject* Leftwall = new GameObject();
+		dae::AnimatorComponent* WallAnimLeft = new dae::AnimatorComponent(1, 6);
+		WallAnimLeft->AddClip("normal", 0, 1, 1.28f);
+		WallAnimLeft->AddClip("wave", 2, 5, 0.12f);
+		WallAnimLeft->PlayClip("normal");
+		Leftwall->AddComponent(WallAnimLeft);
+		for (int i = 0; i < 15; i++)
+		{
+			TransformComponent* transform = new TransformComponent();
+			dae::RenderComponent* BlockRender = GetSceneRenderer()->GetComponent(transform);
+			BlockRender->Texture(dae::ResourceManager::GetInstance().GetTexture("Wall"));
+			BlockRender->AttachAnimator(WallAnimLeft);
+			//BlockRender->Offset({ i * -32,0 });
+			GridComponent* Gridcomp = new GridComponent();
+			bool add = true;
+			Leftwall->AddComponent(transform);
+			Gridcomp->AddTransform(transform);
+			m_Grid->Connect(Gridcomp, 13 * (i+1));
+			Leftwall->AddComponent(Gridcomp);
+		}
+		Add(Leftwall);
+
+
+		GameObject* RightWall = new GameObject();
+		dae::AnimatorComponent* WallAnimRight = new dae::AnimatorComponent(1, 6);
+		WallAnimRight->AddClip("normal", 0, 1, 1.28f);
+		WallAnimRight->AddClip("wave", 2, 5, 0.12f);
+		WallAnimRight->PlayClip("normal");
+		RightWall->AddComponent(WallAnimRight);
+		for (int i = 0; i < 15; i++)
+		{
+			TransformComponent* transform = new TransformComponent();
+			dae::RenderComponent* BlockRender = GetSceneRenderer()->GetComponent(transform);
+			BlockRender->Texture(dae::ResourceManager::GetInstance().GetTexture("Wall"));
+			BlockRender->AttachAnimator(WallAnimRight);
+			//BlockRender->Offset({ i * -32,0 });
+			GridComponent* Gridcomp = new GridComponent();
+			bool add = true;
+			RightWall->AddComponent(transform);
+			Gridcomp->AddTransform(transform);
+			m_Grid->Connect(Gridcomp, 13 * (i + 1) + 12);
+			RightWall->AddComponent(Gridcomp);
+		}
+		Add(RightWall);
 	}
 }

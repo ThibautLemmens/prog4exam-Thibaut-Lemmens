@@ -47,6 +47,9 @@ namespace dae
 		void Destination(Rect dest) { m_Dest = dest; m_HasDest = true; };
 		Rect Destination() const { return m_Dest; };
 
+		void Offset(glm::vec2 offset) { m_Offset = offset; };
+		glm::vec2 Offset() const { return m_Offset; };
+
 		SDL_Rect Convert(Rect info) const;
 		
 		TransformComponent* Transform() const { return m_Transform; };
@@ -57,6 +60,8 @@ namespace dae
 
 		bool m_HasDest = false;
 		Rect m_Dest;
+
+		glm::vec2 m_Offset = {0,0};
 
 		dae::Texture2D* m_Texture = nullptr;
 
