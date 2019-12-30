@@ -5,7 +5,7 @@
 #include "ResourceManager.h"
 #include "InputManager.h"
 #include "Command.h"
-#include "GridManager.h"
+#include "MoveGridManager.h"
 #include "structs.h"
 
 namespace dae

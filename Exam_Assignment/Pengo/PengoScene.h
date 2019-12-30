@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.h"
-#include "GridManager.h"
+#include "MoveGridManager.h"
 
 
 namespace dae
@@ -12,7 +12,7 @@ namespace dae
 		PengoScene();
 		~PengoScene();
 	private:
-		GridManager* m_Grid;
+		MoveGridManager* m_Grid;
 		void MakeWall();
 	};
 

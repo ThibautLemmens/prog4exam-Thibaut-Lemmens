@@ -4,7 +4,7 @@
 
 namespace dae
 {
-	class GridManager;
+	class MoveGridManager;
 
 	class GridComponent : public BaseComponent
 	{
@@ -38,10 +38,10 @@ namespace dae
 		void SetSpeed(float speed);
 		float GetSpeed();
 
-		void AddManager(GridManager* grid) { Grid = grid; };
+		void AddManager(MoveGridManager* grid) { Grid = grid; };
 		void AddTransform(TransformComponent* transform) { Transform = transform; };
 
-		GridManager* GetManager() const {return Grid;};
+		MoveGridManager* GetManager() const {return Grid;};
 
 	protected:
 		bool Move = false;
@@ -54,7 +54,7 @@ namespace dae
 		float MoveSpeed = 0.24f;
 		float Time = 0;
 		TransformComponent* Transform = nullptr;
-		GridManager* Grid = nullptr;
+		MoveGridManager* Grid = nullptr;
 
 		glm::vec2 Lerp(glm::vec2 start, glm::vec2 end, float percent)
 		{

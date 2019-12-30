@@ -15,13 +15,21 @@ namespace dae
 		~ResourceManager();
 		void Init(std::string&& data);
 
-		Texture2D* LoadTexture(const std::string& file);
+		//load texture, but doesnt store
+		std::shared_ptr<Texture2D> LoadTexture(const std::string& file);
+		//store a texture
 		bool StoreTexture(const std::string& name, Texture2D* tex);
-		Texture2D* GetTexture(const std::string& name);
+		bool StoreTexture(const std::string& name, const std::string& file);
+		//get stored texture
+		std::weak_ptr <Texture2D> GetTexture(const std::string& name);
+
+		//TODO: Font support
+
+		//loads font, doesnt store
 		Font* LoadFont(const std::string& file, unsigned int size);
 	private:
-		std::unordered_map<std::string, Texture2D*> m_Textures;
-		std::unordered_map<std::string, Font*> m_Fonts;
+		std::unordered_map<std::string, std::shared_ptr<Texture2D>> m_Textures;
+		std::unordered_map<std::string, std::shared_ptr<Font>> m_Fonts;
 	};
 
 }

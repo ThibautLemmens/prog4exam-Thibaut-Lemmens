@@ -1,6 +1,6 @@
 #include "MiniginPCH.h"
 #include "GridComponent.h"
-#include "GridManager.h"
+#include "MoveGridManager.h"
 #include <cmath>
 
 dae::GridComponent::GridComponent()

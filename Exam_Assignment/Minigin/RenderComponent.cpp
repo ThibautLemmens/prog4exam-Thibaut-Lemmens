@@ -4,14 +4,18 @@
 #include "Renderer.h"
 #include <SDL.h>
 
-void dae::RenderComponent::RenderUpdate()
+dae::RenderData dae::RenderComponent::Render()
 {
-}
-
-void dae::RenderComponent::Render() const
-{
-	if (m_Texture == nullptr) { return; }
-	if (m_Transform == nullptr) { return; }
+	if (m_Texture == nullptr)
+	{
+		dae::Logger::LogError(L"RenderComponent has no texture");
+		return RenderData(nullptr,SDL_Rect(),SDL_Rect());
+	}
+	if (m_Transform == nullptr)
+	{ 
+		dae::Logger::LogError(L"RenderComponent has no transform");
+		return RenderData(nullptr, SDL_Rect(), SDL_Rect());
+	}
 	if (m_HasAnimator)
 	{
 		//dest
@@ -33,23 +37,35 @@ void dae::RenderComponent::Render() const
 		src.w *= (int)m_Transform->Scale().x;
 		src.h *= (int)m_Transform->Scale().y;
 
-		Renderer::GetInstance().RenderTexture(*m_Texture, &dest, &src);
+		//Renderer::GetInstance().RenderTexture(*m_Texture, &dest, &src);
 
 
-		return;
+		return RenderData(m_Texture,dest,src);
 	}
 	if (m_HasDest)
 	{
 		if (m_HasSource)
 		{
-			Renderer::GetInstance().RenderTexture(*m_Texture, &Convert(m_Dest), &Convert(m_Source));
-			return;
+			//Renderer::GetInstance().RenderTexture(*m_Texture, &Convert(m_Dest), &Convert(m_Source));
+			return RenderData(m_Texture, Convert(m_Dest), Convert(m_Source));
 		}
-		Renderer::GetInstance().RenderTexture(*m_Texture, &Convert(m_Dest));
-		return;
+		//Renderer::GetInstance().RenderTexture(*m_Texture, &Convert(m_Dest));
+		SDL_Rect src(m_Animator->GetSource(m_Dest.width, m_Dest.height));
+		src.w *= (int)m_Transform->Scale().x;
+		src.h *= (int)m_Transform->Scale().y;
+		return RenderData(m_Texture, Convert(m_Dest), src);
 	}
-	Renderer::GetInstance().RenderTexture(*m_Texture, m_Transform->Position().x, m_Transform->Position().y);
+	//Renderer::GetInstance().RenderTexture(*m_Texture, m_Transform->Position().x, m_Transform->Position().y);
+	//dest
+	SDL_Rect dest;
+	dest.x = static_cast<int>(m_Transform->Position().x + m_Offset.x);
+	dest.y = static_cast<int>(m_Transform->Position().y + m_Offset.y);
+	SDL_QueryTexture(m_Texture->GetSDLTexture(), nullptr, nullptr, &dest.w, &dest.h);
 
+	SDL_Rect src(m_Animator->GetSource(dest.w, dest.h));
+	src.w *= (int)m_Transform->Scale().x;
+	src.h *= (int)m_Transform->Scale().y;
+	return RenderData(m_Texture, dest, src);
 }
 
 SDL_Rect dae::RenderComponent::Convert(Rect info) const
@@ -57,7 +73,7 @@ SDL_Rect dae::RenderComponent::Convert(Rect info) const
 	SDL_Rect a;
 	a.x = info.x;
 	a.y = info.y;
-	a.w = info.length;
+	a.w = info.width;
 	a.h = info.height;
 
 	return a;

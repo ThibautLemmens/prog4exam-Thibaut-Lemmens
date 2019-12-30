@@ -2,7 +2,7 @@
 #include "BaseComponent.h"
 #include "AnimatorComponent.h"
 #include "TransformComponent.h"
-#include "glm\common.hpp"
+#include "glm\vec4.hpp"
 #include "Texture2D.h"
 #include "Font.h"
 #include "Renderer.h"

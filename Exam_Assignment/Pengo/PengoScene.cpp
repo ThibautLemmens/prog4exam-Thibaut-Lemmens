@@ -13,11 +13,14 @@ namespace dae
 
 	dae::PengoScene::PengoScene() : m_Grid{ nullptr }
 	{
-		m_Grid = new GridManager(17, 13, 32);
+		//GRID
+		m_Grid = new MoveGridManager(17, 13, 32);
 		Add(m_Grid);
 
-
+		//PLAYER
 		GameObject* Player = new GameObject();
+
+		//player animator
 		dae::AnimatorComponent* PlayerAnimator = new dae::AnimatorComponent(5, 5);
 		PlayerAnimator->AddClip("RunDown", 0, 1, 0.24f);
 		PlayerAnimator->AddClip("RunUp", 5, 6, 0.24f);
@@ -31,14 +34,17 @@ namespace dae
 		PlayerAnimator->PlayClip("RunDown");
 		Player->AddComponent(PlayerAnimator);
 		
+		//grid component player
 		GridComponent* Gridcompon = new GridComponent();
 		Gridcompon->AddTransform(Player->Transform());
 		Gridcompon->Tag("Player");
 		m_Grid->Connect(Gridcompon, 126);
 		Player->AddComponent(Gridcompon);
 
+		//input player
 		InputComponent* inputcomp = new InputComponent(0, &InputManager::GetInstance());
 
+		//move left
 		Input* moveLeft = new Input;
 		moveLeft->button = ControllerButton::DpadLeft;
 		moveLeft->keyboard = 'A';
@@ -49,6 +55,8 @@ namespace dae
 		moveLeft->pCommand = leftcom;
 		inputcomp->AddInput(moveLeft);
 
+
+		//move right
 		Input* moveRight = new Input;
 		moveRight->button = ControllerButton::DpadRight;
 		moveRight->keyboard = 'D';
@@ -59,6 +67,8 @@ namespace dae
 		moveRight->pCommand = rightcom;
 		inputcomp->AddInput(moveRight);
 
+
+		//move up
 		Input* moveUp = new Input;
 		moveUp->button = ControllerButton::DpadUp;
 		moveUp->keyboard = 'W';
@@ -69,6 +79,7 @@ namespace dae
 		moveUp->pCommand = upcom;
 		inputcomp->AddInput(moveUp);
 
+		//move left
 		Input* moveDown = new Input;
 		moveDown->button = ControllerButton::DpadDown;
 		moveDown->keyboard = 'S';
@@ -79,6 +90,7 @@ namespace dae
 		moveDown->pCommand = downcom;
 		inputcomp->AddInput(moveDown);
 
+		//interact 
 		Input* interact = new Input;
 		interact->button = ControllerButton::ButtonA;
 		interact->keyboard = ' ';
@@ -90,20 +102,27 @@ namespace dae
 
 		Player->AddComponent(inputcomp);
 
+		//get player rendercomponent
 		dae::RenderComponent* PlayerRender = GetSceneRenderer()->GetComponent(Player->Transform());
 		PlayerRender->AttachAnimator(PlayerAnimator);
 
+		//store and get texture
 		dae::ResourceManager::GetInstance().StoreTexture("Pengo", dae::ResourceManager::GetInstance().LoadTexture("Pengos.jpg"));
 		PlayerRender->Texture(dae::ResourceManager::GetInstance().GetTexture("Pengo"));
+
+		//add plaer to scene
 		Add(Player);
 		
+
+		//RESOURECES
 		dae::ResourceManager::GetInstance().StoreTexture("Blocks", dae::ResourceManager::GetInstance().LoadTexture("Blocks.jpg"));
 		dae::ResourceManager::GetInstance().StoreTexture("SnowBees", dae::ResourceManager::GetInstance().LoadTexture("SnowBees.jpg"));
 		dae::ResourceManager::GetInstance().StoreTexture("Wall", dae::ResourceManager::GetInstance().LoadTexture("Wall.jpg"));
 
+		//MAKES 4 WALLS AROUND THE BORDER 
 		MakeWall();
 
-		//std::vector<GameObject*>Blocks;
+		// 70 ICE BLOCKS
 		for (size_t i = 0; i < 70; i++)
 		{
 			GameObject* block = new GameObject();
@@ -142,6 +161,8 @@ namespace dae
 
 			Add(block);
 		}
+
+		// 3 DIAMOND BLOCKS
 		for (size_t i = 0; i < 3; i++)
 		{
 			GameObject* block = new GameObject();
@@ -166,7 +187,7 @@ namespace dae
 			block->AddComponent(Gridcomp);
 			Add(block);
 		}
-
+		// 4 SNOWBEES
 		for (size_t i = 0; i < 4; i++)
 		{
 			GameObject* Enemy = new GameObject();
@@ -234,6 +255,7 @@ namespace dae
 			delete mObjects[i];
 		}
 	}
+
 	void PengoScene::MakeWall()
 	{
 		GameObject* Upwall = new GameObject();

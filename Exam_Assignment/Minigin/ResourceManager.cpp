@@ -10,22 +10,22 @@
 
 dae::ResourceManager::~ResourceManager()
 {
-	std::unordered_map<std::string, Texture2D*>::iterator it = m_Textures.begin();
+	//std::unordered_map<std::string, std::shared_ptr<Texture2D>>::iterator it = m_Textures.begin();
 
-	// Iterate over the map using iterator
-	while (it != m_Textures.end())
-	{
-		delete it->second;
-		it++;
-	}
+	//// Iterate over the map using iterator
+	//while (it != m_Textures.end())
+	//{
+	//	delete it->second;
+	//	it++;
+	//}
 
-	std::unordered_map<std::string, Font*>::iterator it1 = m_Fonts.begin();
-	// Iterate over the map using iterator
-	while (it1 != m_Fonts.end())
-	{
-		delete it1->second;
-		it1++;
-	}
+	//std::unordered_map<std::string, Font*>::iterator it1 = m_Fonts.begin();
+	//// Iterate over the map using iterator
+	//while (it1 != m_Fonts.end())
+	//{
+	//	delete it1->second;
+	//	it1++;
+	//}
 }
 
 void dae::ResourceManager::Init(std::string&& dataPath)
@@ -50,7 +50,7 @@ void dae::ResourceManager::Init(std::string&& dataPath)
 	}
 }
 
-dae::Texture2D* dae::ResourceManager::LoadTexture(const std::string& file)
+std::shared_ptr<dae::Texture2D> dae::ResourceManager::LoadTexture(const std::string& file)
 {
 	std::string fullPath = mDataPath + file;
 	SDL_Texture *texture = IMG_LoadTexture(Renderer::GetInstance().GetSDLRenderer(), fullPath.c_str());
@@ -58,7 +58,7 @@ dae::Texture2D* dae::ResourceManager::LoadTexture(const std::string& file)
 	{
 		throw std::runtime_error(std::string("Failed to load texture: ") + SDL_GetError());
 	}
-	return new Texture2D(texture);
+	return std::make_shared<Texture2D>(texture);
 }
 
 bool dae::ResourceManager::StoreTexture(const std::string & name, Texture2D* tex)
@@ -68,24 +68,42 @@ bool dae::ResourceManager::StoreTexture(const std::string & name, Texture2D* tex
 		dae::Logger::LogWarning(L"[ResourceManager] Cant Store! Texture is Nullptr");
 		return false;
 	}
-	std::unordered_map<std::string, Texture2D*>::iterator i = m_Textures.find(name);
+	std::unordered_map<std::string, std::shared_ptr<Texture2D>>::iterator i = m_Textures.find(name);
 	if (i != m_Textures.end())
 	{
 		Logger::LogError(L"[ResourceManager] Cant Store! Name Already Exists");
 	}
 
-	m_Textures.insert(std::pair<std::string, Texture2D*>(name, tex));
+	m_Textures.insert(std::pair<std::string, std::shared_ptr<Texture2D>>(name, tex));
 
 	return true;
 }
 
-dae::Texture2D* dae::ResourceManager::GetTexture(const std::string & name)
+bool dae::ResourceManager::StoreTexture(const std::string & name, const std::string & file)
 {
-	std::unordered_map<std::string, Texture2D*>::iterator i = m_Textures.find(name);
+	std::string fullPath = mDataPath + file;
+	SDL_Texture *texture = IMG_LoadTexture(Renderer::GetInstance().GetSDLRenderer(), fullPath.c_str());
+	if (texture == nullptr)
+	{
+		dae::Logger::LogWarning(L"[ResourceManager] Cant Store! Texture is Nullptr");
+		return false;
+	}
+	std::unordered_map<std::string, std::shared_ptr<Texture2D>>::iterator i = m_Textures.find(name);
+	if (i != m_Textures.end())
+	{
+		Logger::LogError(L"[ResourceManager] Cant Store! Name Already Exists");
+	}
+	m_Textures.insert(std::pair<std::string, std::shared_ptr<Texture2D>>(name, std::make_shared<Texture2D>(texture)));
+	return true;
+}
+
+std::weak_ptr<dae::Texture2D> dae::ResourceManager::GetTexture(const std::string & name)
+{
+	std::unordered_map<std::string, std::shared_ptr<Texture2D>>::iterator i = m_Textures.find(name);
 	if (i == m_Textures.end())
 	{
 		Logger::LogError(L"[ResourceManager] Cant get! Name doesn't Exists");
-		return nullptr;
+		return std::make_shared<Texture2D>(nullptr);
 	}
 	else
 	{

@@ -1,22 +1,21 @@
 #include "MiniginPCH.h"
 #include "Renderer.h"
 #include <SDL.h>
+#include <glew.h>
+#include <gl\GL.h>
 #include "RenderComponent.h"
 #include "Texture2D.h"
 #include "SceneManager.h"
+#include <iostream>
+#include <fstream>
 
 void dae::Renderer::Init(SDL_Window * window)
 {
-	mRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	mRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
 	if (mRenderer == nullptr) 
 	{
 		throw std::runtime_error(std::string("SDL_CreateRenderer Error: ") + SDL_GetError());
 	}
-}
-
-void dae::Renderer::RenderUpdate()
-{
-	SceneManager::GetInstance().RenderUpdate();
 }
 
 void dae::Renderer::Render()
@@ -74,4 +73,3 @@ void dae::Renderer::RenderTexture(const Texture2D & texture,const SDL_Rect* dst)
 {
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, dst);
 }
-

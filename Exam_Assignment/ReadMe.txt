@@ -23,7 +23,7 @@ AnimatorComponent:
 when making an animator, you pass the cols and rows. then you can begin making a clips, they hold a name, begin and end frame and how fast each frame last. you add those clips to the animator. then you can play them by passing a string. the Animator will Update the current clip
 
 StatemachineComponent:
-This component holds states, state is a class you inherit from when making a new state, you can overwrite the entry, update, and end fucntion. the state machine will call update of the current state. you can also attach an animatorcomponent. the default entry will call the playClip of the animationName the state holds.
+This component holds states, state is a class you inherit from when making a new state, you can overwrite the entry, update, and end fucntion. the state machine will call the update function of the current state. you can also attach an animatorcomponent. the default entry will call the playClip of the animationName the state holds.
 
 TransformComponent:
 holds a postion and scale. you can also parent and child other transformComponents

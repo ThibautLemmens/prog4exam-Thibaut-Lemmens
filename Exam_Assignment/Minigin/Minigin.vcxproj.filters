@@ -34,6 +34,12 @@
     <Filter Include="Core">
       <UniqueIdentifier>{02a3ef22-bee1-41f8-97f7-aa3cffe07909}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pixel">
+      <UniqueIdentifier>{53775189-3b38-430c-a6b9-315284f65fab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderCore">
+      <UniqueIdentifier>{8a4e5a4d-c71b-46e0-9527-d4ec9e0cc8e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -108,14 +114,29 @@
     <ClInclude Include="GridComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="GridManager.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
     <ClInclude Include="SceneRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Log.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveGridManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelSimulation.h">
+      <Filter>Pixel</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelGrid.h">
+      <Filter>Pixel</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>RenderCore</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingStack.h">
+      <Filter>sceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>sceneGraph</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,14 +191,29 @@
     <ClCompile Include="GridComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="GridManager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
     <ClCompile Include="SceneRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Log.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveGridManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelSimulation.cpp">
+      <Filter>Pixel</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelGrid.cpp">
+      <Filter>Pixel</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>RenderCore</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingStack.cpp">
+      <Filter>sceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>sceneGraph</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

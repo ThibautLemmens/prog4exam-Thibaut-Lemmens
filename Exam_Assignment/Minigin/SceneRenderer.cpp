@@ -23,7 +23,7 @@ void dae::SceneRenderer::Render()
 {
 	for (RenderComponent* rc: m_RenderComponentes)
 	{
-		rc->Render();
+		dae::RenderingStack::GetInstance().Add(rc->Render());
 	}
 }
 

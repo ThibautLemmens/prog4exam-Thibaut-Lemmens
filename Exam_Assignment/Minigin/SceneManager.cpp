@@ -10,14 +10,6 @@ void dae::SceneManager::Update()
 	}
 }
 
-void dae::SceneManager::RenderUpdate()
-{
-	for (auto &scene : mScenes)
-	{
-		scene->GetSceneRenderer()->RenderUpdate();
-	}
-}
-
 void dae::SceneManager::Render()
 {
 	for (auto &scene : mScenes)

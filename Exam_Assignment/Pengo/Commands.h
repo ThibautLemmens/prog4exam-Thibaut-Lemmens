@@ -1,6 +1,6 @@
 #pragma once
 #include "Command.h"
-#include "GridManager.h"
+#include "MoveGridManager.h"
 #include "structs.h"
 #include "GameObject.h"
 namespace dae

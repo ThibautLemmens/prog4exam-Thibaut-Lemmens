@@ -12,7 +12,6 @@ namespace dae
 		Scene* CreateScene(const std::string& name);
 		void AddScene(Scene* scene);
 		void Update();
-		void RenderUpdate();
 		void Render();
 		void Empty();
 

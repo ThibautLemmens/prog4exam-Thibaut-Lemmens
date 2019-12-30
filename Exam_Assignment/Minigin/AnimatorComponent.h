@@ -9,8 +9,7 @@ struct SDL_Rect;
 
 namespace dae
 {
-
-	
+	//Clip = animation data
 	struct Clip
 	{
 		std::string Name;
@@ -18,11 +17,11 @@ namespace dae
 		int EndFrame;
 		float TickRate;
 	};
-
 	
 	class AnimatorComponent final : public BaseComponent
 	{
 	public:
+		//Give amount of rows and collums
 		AnimatorComponent(int col, int row) :m_Cols{col}, m_Rows{row}{};
 		virtual ~AnimatorComponent()
 		{ 
@@ -30,11 +29,13 @@ namespace dae
 			//delete m_currentClip;
 		};
 
+		//Rule of 5
 		AnimatorComponent(const AnimatorComponent& other) = delete;
 		AnimatorComponent(AnimatorComponent&& other) noexcept = delete;
 		AnimatorComponent& operator=(const AnimatorComponent& other) = delete;
 		AnimatorComponent& operator=(AnimatorComponent&& other) noexcept = delete;
 
+		//add animation clip <clipname> <startFrame> <endFrame> <speed>
 		void AddClip(const std::string& ClipnName, const int& StartFrame,const int& EndFrame, const float& TickRate)
 		{
 			std::unordered_map<std::string, Clip>::iterator i = m_Clips.find(ClipnName);
@@ -58,6 +59,7 @@ namespace dae
 			}
 		};
 
+		//play animation clip <clipname>
 		void PlayClip(const std::string& clipname)
 		{
 			std::unordered_map<std::string, Clip>::iterator i = m_Clips.find(clipname);
@@ -71,8 +73,11 @@ namespace dae
 				m_CurrentFrame = (m_CurrentFrame >= m_currentClip->EndFrame + 1 || m_CurrentFrame <= m_currentClip->StartFrame - 1) ? m_currentClip->StartFrame : m_CurrentFrame;
 			}
 		};
+
+		//Init
 		virtual void Initialize() override {};
 
+		//Update
 		virtual void Update() override
 		{
 			m_timer += Time::GetInstance().DeltaTime();
@@ -84,21 +89,31 @@ namespace dae
 			}
 		}
 
+		//Retrun Source rectangle, pass texure <Widht> and <Height>
 		SDL_Rect GetSource(const int& width,const int& Height);
 		
-		//gets
+		///gets
+		//Get speed of active Clip
 		float TickRate() const { return m_currentClip->TickRate; };
+		//Get current frame 
 		int CurrentFrame() const { return m_CurrentFrame; };
+		//get amount of collums
 		int Cols() const { return m_Cols; };
+		//get amount of rows
 		int Rows() const { return m_Rows; };
+		//get current active clip
 		const Clip CurrentClip() const { return *m_currentClip; };
 
 	private:
+		//collums and rows, max frames
 		int m_Cols, m_Rows;
+		//stored clips
 		std::unordered_map<std::string, Clip> m_Clips;
+		//current active clip
 		Clip* m_currentClip;
-
+		//timer used for animations
 		float m_timer;
+		//current frame showing
 		int m_CurrentFrame;
 	};
 }

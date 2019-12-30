@@ -13,7 +13,7 @@ namespace dae
 
 	dae::PengoCOOPScene::PengoCOOPScene() : m_Grid{ nullptr }
 	{
-		m_Grid = new GridManager(17, 13, 32);
+		m_Grid = new MoveGridManager(17, 13, 32);
 		Add(m_Grid);
 
 
